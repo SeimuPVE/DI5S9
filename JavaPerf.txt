@@ -1,38 +1,21 @@
-jhat
-jstack
-jvisualvm
-dinatrace
-jvisualgc
+sysstat
 
 
+options
+    Options, if used, should follow immediately after the command name.
+heap-dump-file
+    Java binary heap dump file to be browsed. For a dump file that contains multiple heap dumps, you may specify which dump in the file by appending "#<number> to the file name, i.e. "foo.hprof#3".
 
-https://fr.wikibooks.org/wiki/Programmation_Java/Param%C3%A9trer_la_JVM
+DESCRIPTION
 
-iostat : installer sysstat
-iostat + vmstat : https://www.tecmint.com/linux-performance-monitoring-with-vmstat-and-iostat-commands/
-nicstat : http://manpages.org/nicstat
-Java Mission Control : http://blog.infine.com/java-mission-control-loutil-quil-manquait-2651
+The jhat command parses a java heap dump file and launches a webserver. jhat enables you to browse heap dumps using your favorite webbrowser. jhat supports pre-designed queries (such as 'show all instances of a known class "Foo"') as well as OQL (Object Query Language) - a SQL-like query language to query heap dumps. Help on OQL is available from the OQL help page shown by jhat. With the default port, OQL help is available at http://localhost:7000/oqlhelp/
 
-vmstat 1
-procs ----------mémoire---------- -échange- -----io---- -système- ------cpu-----
- r  b   swpd  libre tampon  cache   si   so    bi    bo   in   cs us sy id wa st
- 0  0      0 2330400 186412 3074460    0    0   212   163  580 1694 20  5 71  4  0
- 2  0      0 2330152 186412 3074684    0    0     0     0  445  850  1  2 97  0  0
- 0  0      0 2329788 186412 3074480    0    0     0     0  580  990  3  2 95  0  0
- 0  0      0 2329796 186412 3074472    0    0     0     0  616 1137  3  2 95  0  0
- 0  0      0 2329632 186420 3074480    0    0     0    32  952 1241  2 28 68  3  0
- 0  0      0 2329632 186420 3074476    0    0     0     0  951 1499  4  7 89  1  0
- 
-vmstats : pas convaincu, plus pour monitorer le PC que faire un benchmarking sur un programme précis
+There are several ways to generate a java heap dump:
 
+    Use jmap -dump option to obtain a heap dump at runtime;
+    Use jconsole option to obtain a heap dump via HotSpotDiagnosticMXBean at runtime;
+    Heap dump will be generated when OutOfMemoryError is thrown by specifying -XX:+HeapDumpOnOutOfMemoryError VM option;
+    Use hprof.
 
-jcmd 6875 VM.flags
-6875:
--XX:CICompilerCount=2 -XX:ConcGCThreads=1 -XX:G1ConcRefinementThreads=2 -XX:G1HeapRegionSize=1048576 -XX:InitialHeapSize=130023424 -XX:MarkStackSize=4194304 -XX:MaxHeapSize=2071986176 -XX:MaxNewSize=1242562560 -XX:MinHeapDeltaBytes=1048576 -XX:NonNMethodCodeHeapSize=5824844 -XX:NonProfiledCodeHeapSize=122916698 -XX:ProfiledCodeHeapSize=122916698 -XX:ReservedCodeCacheSize=251658240 -XX:+SegmentedCodeCache -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseG1GC 
+NOTE: This tool is experimental and may not be available in future versions of the JDK.
 
-jcmd 6875 VM.version
-6875:
-OpenJDK 64-Bit Server VM version 10.0.2+13
-JDK 10.0.2
-
-jconsole : voir screens, c'est plutôt cool !
