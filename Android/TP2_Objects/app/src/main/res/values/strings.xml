@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TP2_Objects</string>
+    <string name="str_textEdit_name">Nom :</string>
+    <string name="str_textEdit_surname">Prénom :</string>
+    <string name="str_textEdit_age">Âge :</string>
+    <string name="str_valid_button">Valider</string>
+</resources>

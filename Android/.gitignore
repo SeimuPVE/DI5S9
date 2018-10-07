@@ -1,0 +1,6 @@
+HelloIntent/gradle*
+HelloIntent/*gradle
+HelloIntent/.*
+HelloIntent/app/.gitignore
+HelloIntent/app/build.gradle
+HelloIntent/app/proguard-rules.pro 

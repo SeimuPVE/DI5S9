@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TP2</string>
+    <string name="text_button_1">Touch me 1 !</string>
+    <string name="text_button_2">Touch me 2 !</string>
+    <string name="text_window_2">Window 2 !</string>
+    <string name="when_text_todo">It doesn\'t work ?</string>
+</resources>

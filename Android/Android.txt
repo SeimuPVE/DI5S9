@@ -1,0 +1,31 @@
+Benchmark (x2, tablette HP et tablette Samsung) en fps :
+	- nombre de frames par secondes
+	- sans traitement
+	- traitement java
+	- traitement C++
+
+
+onCameraViewStarted : prépare un tableau pour contenir les images
+onCameraFrame : récupère les images (au format noir et blanc)
+
+
+Sans traitements :
+	HP : 30 fps
+	Samsung : 30 fps
+
+Traitement Java (Gradiant) :
+	HP : 0.61 fps
+	Samsung : 
+
+Traitement Java (Sobel) :
+	HP : 0.61 fps
+	Samsung : 
+
+Traitement C++ :
+	HP : 
+	Samsung : 
+
+
+Quelle est le nom de la méthode dans notre cas ?
+Quelle est le nom la classe possédant cette méthode ?
+Dans notre cas la méthode est Gradiant ou Sobel et provient de la classe VideoActiviy.

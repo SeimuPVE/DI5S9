@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/seimu/Projects/DI5S9_Android/PolytechVideoProcessing/polytechVideoProcessing/build/intermediates/res/merged/debug/layout_tutorial1_surface_view.xml.flat",
+        "source": "/home/seimu/Projects/DI5S9_Android/PolytechVideoProcessing/polytechVideoProcessing/src/main/res/layout/tutorial1_surface_view.xml"
+    },
+    {
+        "merged": "/home/seimu/Projects/DI5S9_Android/PolytechVideoProcessing/polytechVideoProcessing/build/intermediates/res/merged/debug/drawable_icon.png.flat",
+        "source": "/home/seimu/Projects/DI5S9_Android/PolytechVideoProcessing/polytechVideoProcessing/src/main/res/drawable/icon.png"
+    }
+]
