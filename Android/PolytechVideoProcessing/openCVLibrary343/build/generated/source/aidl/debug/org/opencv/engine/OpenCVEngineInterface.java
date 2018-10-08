@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /home/seimu/Projects/DI5S9_Android/PolytechVideoProcessing/openCVLibrary343/src/main/aidl/org/opencv/engine/OpenCVEngineInterface.aidl
+ * Original file: /home/seimu/Projects/DI5S9/Android/PolytechVideoProcessing/openCVLibrary343/src/main/aidl/org/opencv/engine/OpenCVEngineInterface.aidl
  */
 package org.opencv.engine;
 /**

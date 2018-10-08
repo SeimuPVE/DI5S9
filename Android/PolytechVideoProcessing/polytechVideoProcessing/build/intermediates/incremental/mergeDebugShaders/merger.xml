@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/seimu/Projects/DI5S9_Android/PolytechVideoProcessing/polytechVideoProcessing/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/home/seimu/Projects/DI5S9_Android/PolytechVideoProcessing/polytechVideoProcessing/src/debug/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/seimu/Projects/DI5S9/Android/PolytechVideoProcessing/polytechVideoProcessing/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/home/seimu/Projects/DI5S9/Android/PolytechVideoProcessing/polytechVideoProcessing/src/debug/shaders"/></dataSet></merger>

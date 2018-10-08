@@ -18,6 +18,7 @@ import android.view.SurfaceView;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+
 public class VideoActivity extends Activity implements CvCameraViewListener2 {
     private static final String TAG = "OCVSample::Activity";
 
@@ -105,7 +106,7 @@ public class VideoActivity extends Activity implements CvCameraViewListener2 {
     	Mat gray = inputFrame.gray();
     	MatToArray(gray);
 
-    	// byte[] new_array = Gradiant(outarray);
+    	//byte[] new_array = Gradiant(outarray);
         byte[] new_array = Sobel(outarray);
 
     	Mat out = ArrayToMat(gray, w, h, new_array);
@@ -150,17 +151,20 @@ public class VideoActivity extends Activity implements CvCameraViewListener2 {
         filter[0][1] = 0;
         filter[0][2] = 1;
         filter[1][0] = 2;
-        filter[1][0] = 0;
-        filter[1][0] = 2;
+        filter[1][1] = 0;
+        filter[1][2] = 2;
         filter[2][0] = 1;
-        filter[2][0] = 0;
-        filter[2][0] = 1;
+        filter[2][1] = 0;
+        filter[2][2] = 1;
 
         for(x = 1; x < w - 1; x++)
-            for(y = 1; y < h - 1; y++)
+            for(y = 1; y < h - 1; y++) {
+                sobel_array[y * w + x] = 0;
+
                 for(m_x = 0; m_x < 3; m_x++)
                     for(m_y = 0; m_y < 3; m_y++)
-                        sobel_array[y * w + x] += filter[m_x][m_y] * outarray[(y-m_y-1) * w + (x-m_x-1)];
+                        sobel_array[y * w + x] += filter[m_x][m_y] * outarray[(y + (m_y-1)) * w + (x + (m_x-1))];
+            }
 
         return sobel_array;
     }
