@@ -1,13 +1,8 @@
-TP1 :
-	- 3a
-	- 3b
-	- 3c
+TP1 : 3c.
 
-TP2 :
-	- voir pour ajouter des améliorations
+TP2 : voir pour ajouter des améliorations.
 
-TP3 :
-	plus ou moins tout
+TP3 : plus ou moins tout.
 
 TP4 : DONE.
 

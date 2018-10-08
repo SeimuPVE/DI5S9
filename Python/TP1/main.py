@@ -1,4 +1,6 @@
 from Editor import *
+from EtudiantReader import *
+
 
 # Question 1
 print("Bonjour tout le monde !")
@@ -7,4 +9,6 @@ print("Bonjour tout le monde !")
 editor = Editor()
 editor.menu()
 
-# Question 3
+# Question 5
+student_list = EtudiantReader()
+print(student_list)

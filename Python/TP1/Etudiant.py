@@ -14,7 +14,7 @@ class Etudiant:
         self.adresslec()
 
     def adresslec(self):
-        adress = self.nom + '.' + self.prenom + "@etu.univ-tours.fr"
+        address = self.nom + '.' + self.prenom + "@etu.univ-tours.fr"
 
     def makeAge(self):
         print("makeAge TODO.")
