@@ -18,7 +18,7 @@ Traitement Java (Gradiant) :
 	Samsung : 
 
 Traitement Java (Sobel) :
-	HP : 0.61 fps
+	HP : 3.20 fps
 	Samsung : 
 
 Traitement C++ :
@@ -27,5 +27,17 @@ Traitement C++ :
 
 
 Quelle est le nom de la méthode dans notre cas ?
+Le nom de la fonction dans le code en C est composé du chemin des packages (avec des underscore à la place des points),
+suivi du nom de la classe et enfin du nom de la méthode qui n’est autre que ProcessFast(). Cette méthode appartient à
+la classe FrameProcessing. Il est nécessaire de modifier l’entête de la fonction pour que celle ci correspondent à
+l’architecture du TP4. L’entête final est la suivante :
+JNIEXPORT void JNICALL Java_fr_polytech_video_VideoActivity_ProcessFast
+
 Quelle est le nom la classe possédant cette méthode ?
+Le code appelant cette fonction est situé dans le package fr.polytech.video. La méthode ProcessFast(...) du code Java
+va lorsqu’elle sera appelée charger le JNI qui va pouvoir appeler le  code de la fonction en C++ ayant le même nom et
+l'exécuter.
+
 Dans notre cas la méthode est Gradiant ou Sobel et provient de la classe VideoActiviy.
+
+16) Le code permet de charger le code C++.

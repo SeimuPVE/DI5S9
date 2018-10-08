@@ -4,7 +4,7 @@
 using namespace std;
 
 extern "C" {
-	JNIEXPORT void JNICALL Java_epu_android_FrameProcessing_ProcessFast(JNIEnv* env,
+	JNIEXPORT void JNICALL Java_fr_polytech_video_VideoActivity_ProcessFast(JNIEnv* env,
 			jobject thiz, jint width, jint height, jbyteArray data, jbyteArray out)
 	{
 		jbyte* _data = env->GetByteArrayElements(data, 0);

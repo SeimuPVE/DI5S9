@@ -168,4 +168,9 @@ public class VideoActivity extends Activity implements CvCameraViewListener2 {
 
         return sobel_array;
     }
+
+    public native void ProcessFast(int width, int height, byte input[], byte output[]);
+    static {
+        System.loadLibrary("native_sample");
+    }
 }
