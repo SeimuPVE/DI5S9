@@ -1,0 +1,3 @@
+JMH S 48 fr.polytechtours.javaperformance.tp2.MyBenchmark S 77 fr.polytechtours.javaperformance.tp2.generated.MyBenchmark_testMethod_jmhTest S 10 testMethod S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 48 fr.polytechtours.javaperformance.tp2.MyBenchmark S 82 fr.polytechtours.javaperformance.tp2.generated.MyBenchmark_testStupidWhile_jmhTest S 15 testStupidWhile S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 48 fr.polytechtours.javaperformance.tp2.MyBenchmark S 80 fr.polytechtours.javaperformance.tp2.generated.MyBenchmark_testStupidFor_jmhTest S 13 testStupidFor S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
