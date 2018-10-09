@@ -3,15 +3,17 @@ class Date:
     mois = 0
     annee = 0
 
-    def __init__(self, jour, mois, annee):
-        self.jour = jour
-        self.mois = mois
-        self.annee = annee
-
-    def __init__(self, str_date):
-        self.jour = str_date.split('/', 0)
-        self.mois = str_date.split('/', 1)
-        self.annee = str_date.split('/', 2)
+    def __init__(self, *args):
+        if(size(args) == 3):
+            self.jour = args[0]
+            self.mois = args[1]
+            self.annee = args[2]
+        elif(1):
+            self.jour = args[0].split('/', 0)
+            self.mois = args[0].split('/', 1)
+            self.annee = args[0].split('/', 2)
+        else:
+            print("TODO : exception.")
 
     def __eq__(self, o: object):
         if(self.jour == o.jour and self.mois == o.mois and self.annee == o.annee):

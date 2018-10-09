@@ -7,5 +7,3 @@ TP3 : plus ou moins tout.
 TP4 : DONE.
 
 TP5 : all.
-
-TP6 : all.

@@ -28,7 +28,7 @@ class dbImporter:
         self.conn.commit()
         # Read CSV and insert data into the DB.
         with open(filename, 'rb') as file:
-            communes = file.read().split(b'\r\n')
+            communes = file.read()
             for commune in communes:
                 print(commune)
                 if(commune[0] >= 0 and commune[0] <= 9):
