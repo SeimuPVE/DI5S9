@@ -1,1 +1,219 @@
 sysstat
+
+mvn archetype:generate -DinteractiveMode=false -DarchetypeGroupId=org.openjdk.jmh -DarchetypeArtifactId=jmh-java-benchmark-archetype -DgroupId=fr.polytechtours.javaperformance.tp2 -DartifactId=jmh -Dversion=1.0.0
+
+
+
+# JMH version: 1.21
+# VM version: JDK 10.0.2, OpenJDK 64-Bit Server VM, 10.0.2+13
+# VM invoker: /usr/lib/jvm/java-10-openjdk/bin/java
+# VM options: -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: fr.polytechtours.javaperformance.tp2.MyBenchmark.testStupidFor
+
+# Run progress: 0.00% complete, ETA 00:08:20
+# Fork: 1 of 5
+# Warmup Iteration   1: 180264.500 ops/s
+# Warmup Iteration   2: 186302.324 ops/s
+# Warmup Iteration   3: 187012.280 ops/s
+# Warmup Iteration   4: 187014.448 ops/s
+# Warmup Iteration   5: 185260.691 ops/s
+Iteration   1: 186850.093 ops/s
+Iteration   2: 186739.289 ops/s
+Iteration   3: 187091.533 ops/s
+Iteration   4: 187086.643 ops/s
+Iteration   5: 187091.159 ops/s
+
+# Run progress: 20.00% complete, ETA 00:06:44
+# Fork: 2 of 5
+# Warmup Iteration   1: 186834.276 ops/s
+# Warmup Iteration   2: 187056.912 ops/s
+# Warmup Iteration   3: 187089.718 ops/s
+# Warmup Iteration   4: 187100.150 ops/s
+# Warmup Iteration   5: 187065.716 ops/s
+Iteration   1: 186941.829 ops/s
+Iteration   2: 187108.400 ops/s
+Iteration   3: 184725.473 ops/s
+Iteration   4: 176688.001 ops/s
+Iteration   5: 187002.371 ops/s
+
+# Run progress: 40.00% complete, ETA 00:05:02
+# Fork: 3 of 5
+# Warmup Iteration   1: 186567.572 ops/s
+# Warmup Iteration   2: 187059.977 ops/s
+# Warmup Iteration   3: 187120.559 ops/s
+# Warmup Iteration   4: 187069.412 ops/s
+# Warmup Iteration   5: 187081.398 ops/s
+Iteration   1: 187031.288 ops/s
+Iteration   2: 187084.871 ops/s
+Iteration   3: 187108.377 ops/s
+Iteration   4: 186614.498 ops/s
+Iteration   5: 187116.571 ops/s
+
+# Run progress: 60.00% complete, ETA 00:03:21
+# Fork: 4 of 5
+# Warmup Iteration   1: 186790.501 ops/s
+# Warmup Iteration   2: 186513.725 ops/s
+# Warmup Iteration   3: 186439.856 ops/s
+# Warmup Iteration   4: 186846.346 ops/s
+# Warmup Iteration   5: 183938.586 ops/s
+Iteration   1: 181303.995 ops/s
+Iteration   2: 186706.354 ops/s
+Iteration   3: 186802.510 ops/s
+Iteration   4: 185739.721 ops/s
+Iteration   5: 185999.205 ops/s
+
+# Run progress: 80.00% complete, ETA 00:01:40
+# Fork: 5 of 5
+# Warmup Iteration   1: 186815.133 ops/s
+# Warmup Iteration   2: 185498.506 ops/s
+# Warmup Iteration   3: 185759.358 ops/s
+# Warmup Iteration   4: 186827.004 ops/s
+# Warmup Iteration   5: 186421.672 ops/s
+Iteration   1: 187055.883 ops/s
+Iteration   2: 186574.883 ops/s
+Iteration   3: 155156.116 ops/s
+Iteration   4: 176529.969 ops/s
+Iteration   5: 170606.179 ops/s
+
+
+Result "fr.polytechtours.javaperformance.tp2.MyBenchmark.testStupidFor":
+  183790.208 ±(99.9%) 5474.796 ops/s [Average]
+  (min, avg, max) = (155156.116, 183790.208, 187116.571), stdev = 7308.696
+  CI (99.9%): [178315.412, 189265.005] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:08:23
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                   Mode  Cnt       Score      Error  Units
+MyBenchmark.testStupidFor  thrpt   25  183790.208 ± 5474.796  ops/s
+
+Process finished with exit code 0
+
+
+
+# JMH version: 1.21
+# VM version: JDK 10.0.2, OpenJDK 64-Bit Server VM, 10.0.2+13
+# VM invoker: /usr/lib/jvm/java-10-openjdk/bin/java
+# VM options: -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: fr.polytechtours.javaperformance.tp2.MyBenchmark.testStupidWhile
+
+# Run progress: 0.00% complete, ETA 00:08:20
+# Fork: 1 of 5
+# Warmup Iteration   1: 179999.255 ops/s
+# Warmup Iteration   2: 186378.134 ops/s
+# Warmup Iteration   3: 186550.912 ops/s
+# Warmup Iteration   4: 180107.807 ops/s
+# Warmup Iteration   5: 171307.324 ops/s
+Iteration   1: 152082.623 ops/s
+Iteration   2: 183118.051 ops/s
+Iteration   3: 186282.138 ops/s
+Iteration   4: 186847.913 ops/s
+Iteration   5: 186891.352 ops/s
+
+# Run progress: 20.00% complete, ETA 00:06:44
+# Fork: 2 of 5
+# Warmup Iteration   1: 178316.352 ops/s
+# Warmup Iteration   2: 186084.604 ops/s
+# Warmup Iteration   3: 186148.145 ops/s
+# Warmup Iteration   4: 177290.674 ops/s
+# Warmup Iteration   5: 186907.980 ops/s
+Iteration   1: 186929.746 ops/s
+Iteration   2: 186894.888 ops/s
+Iteration   3: 186895.800 ops/s
+Iteration   4: 186612.596 ops/s
+Iteration   5: 186595.696 ops/s
+
+# Run progress: 40.00% complete, ETA 00:05:02
+# Fork: 3 of 5
+# Warmup Iteration   1: 186365.432 ops/s
+# Warmup Iteration   2: 186937.243 ops/s
+# Warmup Iteration   3: 187000.592 ops/s
+# Warmup Iteration   4: 187028.362 ops/s
+# Warmup Iteration   5: 186914.084 ops/s
+Iteration   1: 186884.334 ops/s
+Iteration   2: 180207.605 ops/s
+Iteration   3: 185117.369 ops/s
+Iteration   4: 185000.980 ops/s
+Iteration   5: 183670.159 ops/s
+
+# Run progress: 60.00% complete, ETA 00:03:21
+# Fork: 4 of 5
+# Warmup Iteration   1: 184478.355 ops/s
+# Warmup Iteration   2: 185483.930 ops/s
+# Warmup Iteration   3: 186682.290 ops/s
+# Warmup Iteration   4: 186975.592 ops/s
+# Warmup Iteration   5: 186989.289 ops/s
+Iteration   1: 187002.664 ops/s
+Iteration   2: 186629.902 ops/s
+Iteration   3: 186732.225 ops/s
+Iteration   4: 186629.882 ops/s
+Iteration   5: 186766.944 ops/s
+
+# Run progress: 80.00% complete, ETA 00:01:40
+# Fork: 5 of 5
+# Warmup Iteration   1: 186481.181 ops/s
+# Warmup Iteration   2: 186560.172 ops/s
+# Warmup Iteration   3: 186095.560 ops/s
+# Warmup Iteration   4: 186170.987 ops/s
+# Warmup Iteration   5: 187039.066 ops/s
+Iteration   1: 186965.270 ops/s
+Iteration   2: 187003.002 ops/s
+Iteration   3: 185826.475 ops/s
+Iteration   4: 185645.551 ops/s
+Iteration   5: 186551.836 ops/s
+
+
+Result "fr.polytechtours.javaperformance.tp2.MyBenchmark.testStupidWhile":
+  184631.400 ±(99.9%) 5215.658 ops/s [Average]
+  (min, avg, max) = (152082.623, 184631.400, 187003.002), stdev = 6962.754
+  CI (99.9%): [179415.742, 189847.058] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:08:23
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                     Mode  Cnt       Score      Error  Units
+MyBenchmark.testStupidWhile  thrpt   25  184631.400 ± 5215.658  ops/s
+
+Process finished with exit code 0
+
+
+
+Annotations :
+	- Benchmark : permet de lancer un Benchmark (wahou quelle surprise !);
+	- BenchmarkMode : permet de choisir quel type de Benchmark effectuer (http://hg.openjdk.java.net/code-tools/jmh/file/66fb723292d4/jmh-samples/src/main/java/org/openjdk/jmh/samples/JMHSample_02_BenchmarkModes.java) :
+		- Mode.Throughput : 
+		- Mode.AverageTime : 
+		- Mode.SampleTime : 
+		- Mode.SingleShotTime : 
+	- Fork : lorsqu'on lance le Benchmark, plusieurs forks (5 par défauts) sont lancés, avec chacun plusieurs appels à la méthode de test. Cette annotation permet de préciser combien de forks lancer.
+	- Group
+	- GroupThread
+	- Measurement
+	- OutputTimeUnit : utilisé avec TimeUnit.QQCHOSE on choisi quel type d'output est choisi pour le temps d'exécution (secondes, milisecondes, etc...);
+	- State (http://hg.openjdk.java.net/code-tools/jmh/file/66fb723292d4/jmh-samples/src/main/java/org/openjdk/jmh/samples/JMHSample_03_States.java)
+	- TearDown
+	- Timeout
+	- Warmup
+	- CompilerControl

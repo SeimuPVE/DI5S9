@@ -32,9 +32,13 @@
 package fr.polytechtours.javaperformance.tp2;
 
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Timeout;
+import org.openjdk.jmh.infra.Blackhole;
 
-import static fr.polytechtours.javaperformance.tp2.BouclesNazes.stupidFor;
-import static fr.polytechtours.javaperformance.tp2.BouclesNazes.stupidWhile;
+import java.util.concurrent.TimeUnit;
+
 
 public class MyBenchmark {
     @Benchmark
@@ -43,13 +47,13 @@ public class MyBenchmark {
         // Put your benchmark code here.
     }
 
-    @Benchmark
-    public void testStupidFor() {
-        stupidFor(10000);
+    @Benchmark @OutputTimeUnit(TimeUnit.SECONDS) @Fork(1)
+    public void testStupidFor(Blackhole blackhole) {
+        blackhole.consume(BouclesNazes.stupidFor(10000));
     }
 
     @Benchmark
-    public void testStupidWhile() {
-        stupidWhile(10000);
+    public void testStupidWhile(Blackhole blackhole) {
+        blackhole.consume(BouclesNazes.stupidWhile(10000));
     }
 }
