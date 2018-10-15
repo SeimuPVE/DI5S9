@@ -41,3 +41,16 @@ l'exécuter.
 Dans notre cas la méthode est Gradiant ou Sobel et provient de la classe VideoActiviy.
 
 16) Le code permet de charger le code C++.
+
+
+________________________________________________________________________________________________________________________
+
+TP6 :
+NE PAS OUBLIER LES PERMISSIONS SUR LE MANIFEST, LE PROF NE L'A PAS PRECISE !!
+<uses-permission android:name="android.permission.INTERNET" />
+Question 2  -> rien ne se passe, normal c'est interdit de faire des appels pouvant être bloquants comme ça dans l'interface,
+				faut le faire dans un thread parallèle
+Question 3 	-> fonctionne très bien mais est un peu lent
+
+Après la correction 2 c'est top.
+
