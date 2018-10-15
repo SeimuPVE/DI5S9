@@ -2,4 +2,5 @@
     <string name="app_name">TP6</string>
     <string name="str_text_view">Click on the button to do a HTTP request !</string>
     <string name="str_button">Click here !</string>
+    <string name="str_edit_text">Enter an IP address</string>
 </resources>
