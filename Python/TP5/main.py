@@ -21,7 +21,20 @@ cursor.execute("""SELECT nomRegion, populationTotale FROM regions""")
 for region in cursor.fetchall():
     print(region)
 
+# SELECT communes.nom, GROUP_CONCAT(departements.code)
+# FROM communes
+# INNER JOIN departements ON communes.departements = departements.code
+# GROUP BY communes.nom
+# HAVING COUNT(*) > 1
+# ORGER BY COUNT(*)
 print("Question 3 : TODO")
-cursor.execute("""SELECT DISTINCT nomCommune, codeDepartement FROM communes c1 WHERE EXISTS (SELECT * FROM communes c2 WHERE c1.nomCommune <> c2.nomCommune)""")
+cursor.execute( """
+                SELECT communes.nomCommune, GROUP_CONCAT(departements.codeDepartement)
+                FROM communes
+                INNER JOIN departements ON communes.codeDepartement = departements.codeDepartement
+                GROUP BY communes.nomCommune
+                HAVING COUNT(*) > 1
+                ORGER BY COUNT(*)
+                """)
 for doublon in cursor.fetchall():
     print(doublon)
