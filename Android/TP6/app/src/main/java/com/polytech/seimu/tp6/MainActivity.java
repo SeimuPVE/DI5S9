@@ -29,10 +29,9 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                callGoogle(); // To use the ugly technique.
-//                CallWebAPI c = new CallWebAPI(textView);
-//                c.execute("http://www.google.com");
-                textView.setText(editText.getText());
+                // callGoogle(); // To use the ugly technique.
+                CallWebAPI c = new CallWebAPI(textView);
+                c.execute("http://ip-api.com/xml/" + editText.getText());
             }
         });
     }

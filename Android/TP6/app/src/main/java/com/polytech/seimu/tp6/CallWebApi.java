@@ -13,6 +13,7 @@ import java.net.URL;
 
 class CallWebAPI extends AsyncTask<String, String, String> {
     private TextView mTextView;
+    private String ip;
 
     public CallWebAPI(TextView mTextView){
         this.mTextView = mTextView;
@@ -25,7 +26,8 @@ class CallWebAPI extends AsyncTask<String, String, String> {
         URL url;
 
         try {
-//            url = new URL("http://www.google.com");
+            //url = new URL("http://www.google.com");
+            ip = params[0].replace("http://ip-api.com/xml/", "");
             url = new URL(params[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
@@ -47,6 +49,17 @@ class CallWebAPI extends AsyncTask<String, String, String> {
     }
 
     protected void onPostExecute(String result) {
-        mTextView.setText(result);
+        // Parse here.
+        int returnCode = (GeoIPParser.get(result, "status").equals("success")) ? 1 : 0;
+        String returnCodeDetails = GeoIPParser.get(result, "status");
+        String countryName = GeoIPParser.get(result, "country");
+        String countryCode = GeoIPParser.get(result, "countryCode");
+        String organization = GeoIPParser.get(result, "org");
+
+        // Create GeoIP.
+        GeoIP geoIP = new GeoIP(returnCode, ip, returnCodeDetails, countryName, countryCode, organization);
+
+        // Send the result.
+        mTextView.setText(geoIP.toString());
     }
 }

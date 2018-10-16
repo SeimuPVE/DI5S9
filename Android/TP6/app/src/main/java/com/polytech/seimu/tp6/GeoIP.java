@@ -6,23 +6,25 @@ public class GeoIP {
     String ReturnCodeDetails;
     String CountryName;
     String CountryCode;
+    String Organization;
 
-    public GeoIP(Integer returnCode, String IP, String returnCodeDetails, String countryName, String countryCode) {
+    public GeoIP(Integer returnCode, String IP, String returnCodeDetails, String countryName, String countryCode, String organisation) {
         ReturnCode = returnCode;
         this.IP = IP;
         ReturnCodeDetails = returnCodeDetails;
         CountryName = countryName;
         CountryCode = countryCode;
+        Organization = organisation;
     }
 
     @Override
     public String toString() {
-        return "GeoIP {" + '\n' +
+        return  "IP = " + IP + '\n' +
+                "CountryName = " + CountryName + '\n' +
+                "CountryCode = " + CountryCode + '\n' +
+                "Organization = " + Organization + '\n' +
+                '\n' +
                 "ReturnCode = " + ReturnCode + '\n' +
-                ", IP = '" + IP + '\'' + '\n' +
-                ", ReturnCodeDetails = '" + ReturnCodeDetails + '\'' + '\n' +
-                ", CountryName = '" + CountryName + '\'' + '\n' +
-                ", CountryCode = '" + CountryCode + '\'' + '\n' +
-                '}';
+                "ReturnCodeDetails = " + ReturnCodeDetails;
     }
 }
