@@ -213,7 +213,8 @@ Annotations :
 	- Measurement
 	- OutputTimeUnit : utilisé avec TimeUnit.QQCHOSE on choisi quel type d'output est choisi pour le temps d'exécution (secondes, milisecondes, etc...);
 	- State (http://hg.openjdk.java.net/code-tools/jmh/file/66fb723292d4/jmh-samples/src/main/java/org/openjdk/jmh/samples/JMHSample_03_States.java)
-	- TearDown
+	- Setup : indique à JMH que la méthode doit être appelée pour configurer l'objet d'état avant d'être transmis à la méthode de référence
+	- TearDown : indique à JMH que cette méthode doit être appelée pour nettoyer (teardown) l'objet d'état après l'exécution du test.
 	- Timeout
 	- Warmup
 	- CompilerControl
