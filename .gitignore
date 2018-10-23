@@ -1,0 +1,13 @@
+# Android
+*/gen/*
+*/*gradle*/*
+*/local.properties/*
+*/proguard-rules.pro/*
+
+# JavaPerf
+*/target/*
+*/.idea/*
+
+# Python
+*/__pycache__/*
+*/venv/*
