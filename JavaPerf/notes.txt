@@ -1,9 +1,8 @@
-sysstat
-
+Générer le projet de benchmark :
 mvn archetype:generate -DinteractiveMode=false -DarchetypeGroupId=org.openjdk.jmh -DarchetypeArtifactId=jmh-java-benchmark-archetype -DgroupId=fr.polytechtours.javaperformance.tp2 -DartifactId=jmh -Dversion=1.0.0
 
 
-
+Benchmark d'une boucle for assez stupide :
 # JMH version: 1.21
 # VM version: JDK 10.0.2, OpenJDK 64-Bit Server VM, 10.0.2+13
 # VM invoker: /usr/lib/jvm/java-10-openjdk/bin/java
@@ -101,6 +100,7 @@ MyBenchmark.testStupidFor  thrpt   25  183790.208 ± 5474.796  ops/s
 Process finished with exit code 0
 
 
+Test d'une boucle while :
 
 # JMH version: 1.21
 # VM version: JDK 10.0.2, OpenJDK 64-Bit Server VM, 10.0.2+13
@@ -221,41 +221,8 @@ Annotations :
 ====================================================================================================================
 
 
-TP2
-JMH et les micro-benchmarks
-Cognard Cédric et Van-Elsue Paul
+Benchmark concat plus : (je sais pas ce que c'est)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Sommaire
-
-Monitoring du système    3
-VMStat    3
-IOStat    4
-NicStat    4
-Outils de monitoring Java    4
-jcmd    4
-jconsole    6
-jvisualvm    6
-jhat    6
-Java Mission Control    7
-Conclusion    7
-
-
-
-
 concat_plus()
 /usr/lib/jvm/java-9-oracle/bin/java -Dfile.encoding=UTF-8 -classpath /home/administrateur/Bureau/target/classes:/home/administrateur/.m2/repository/org/openjdk/jmh/jmh-core/1.21/jmh-core-1.21.jar:/home/administrateur/.m2/repository/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.jar:/home/administrateur/.m2/repository/org/apache/commons/commons-math3/3.2/commons-math3-3.2.jar org.openjdk.jmh.Main TP2.MyBenchmark.test_concat_plus
 WARNING: An illegal reflective access operation has occurred
@@ -358,6 +325,3 @@ Benchmark                          Mode  Cnt   Score   Error  Units
 TP2.MyBenchmark.test_concat_plus  thrpt   25  14.969 ± 0.156  ops/s
 
 Process finished with exit code 0
-
-
-
