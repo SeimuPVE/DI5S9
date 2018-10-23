@@ -217,3 +217,147 @@ Annotations :
 	- Timeout
 	- Warmup
 	- CompilerControl
+	
+====================================================================================================================
+
+
+TP2
+JMH et les micro-benchmarks
+Cognard Cédric et Van-Elsue Paul
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sommaire
+
+Monitoring du système    3
+VMStat    3
+IOStat    4
+NicStat    4
+Outils de monitoring Java    4
+jcmd    4
+jconsole    6
+jvisualvm    6
+jhat    6
+Java Mission Control    7
+Conclusion    7
+
+
+
+
+concat_plus()
+/usr/lib/jvm/java-9-oracle/bin/java -Dfile.encoding=UTF-8 -classpath /home/administrateur/Bureau/target/classes:/home/administrateur/.m2/repository/org/openjdk/jmh/jmh-core/1.21/jmh-core-1.21.jar:/home/administrateur/.m2/repository/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.jar:/home/administrateur/.m2/repository/org/apache/commons/commons-math3/3.2/commons-math3-3.2.jar org.openjdk.jmh.Main TP2.MyBenchmark.test_concat_plus
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.openjdk.jmh.util.Utils (file:/home/administrateur/.m2/repository/org/openjdk/jmh/jmh-core/1.21/jmh-core-1.21.jar) to field java.io.PrintStream.charOut
+WARNING: Please consider reporting this to the maintainers of org.openjdk.jmh.util.Utils
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+# JMH version: 1.21
+# VM version: JDK 9, Java HotSpot(TM) 64-Bit Server VM, 9+181
+# VM invoker: /usr/lib/jvm/java-9-oracle/bin/java
+# VM options: -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: TP2.MyBenchmark.test_concat_plus
+
+# Run progress: 0.00% complete, ETA 00:08:20
+# Fork: 1 of 5
+# Warmup Iteration   1: 11.744 ops/s
+# Warmup Iteration   2: 14.585 ops/s
+# Warmup Iteration   3: 14.771 ops/s
+# Warmup Iteration   4: 15.226 ops/s
+# Warmup Iteration   5: 14.944 ops/s
+Iteration   1: 14.488 ops/s
+Iteration   2: 14.825 ops/s
+Iteration   3: 14.772 ops/s
+Iteration   4: 14.976 ops/s
+Iteration   5: 14.733 ops/s
+
+# Run progress: 20.00% complete, ETA 00:06:48
+# Fork: 2 of 5
+# Warmup Iteration   1: 12.324 ops/s
+# Warmup Iteration   2: 14.957 ops/s
+# Warmup Iteration   3: 14.724 ops/s
+# Warmup Iteration   4: 14.980 ops/s
+# Warmup Iteration   5: 15.090 ops/s
+Iteration   1: 15.038 ops/s
+Iteration   2: 15.026 ops/s
+Iteration   3: 15.143 ops/s
+Iteration   4: 15.037 ops/s
+Iteration   5: 15.274 ops/s
+
+# Run progress: 40.00% complete, ETA 00:05:06
+# Fork: 3 of 5
+# Warmup Iteration   1: 12.229 ops/s
+# Warmup Iteration   2: 14.965 ops/s
+# Warmup Iteration   3: 15.037 ops/s
+# Warmup Iteration   4: 15.158 ops/s
+# Warmup Iteration   5: 15.115 ops/s
+Iteration   1: 15.083 ops/s
+Iteration   2: 14.874 ops/s
+Iteration   3: 14.787 ops/s
+Iteration   4: 15.184 ops/s
+Iteration   5: 14.780 ops/s
+
+# Run progress: 60.00% complete, ETA 00:03:23
+# Fork: 4 of 5
+# Warmup Iteration   1: 11.923 ops/s
+# Warmup Iteration   2: 15.038 ops/s
+# Warmup Iteration   3: 14.958 ops/s
+# Warmup Iteration   4: 14.986 ops/s
+# Warmup Iteration   5: 15.079 ops/s
+Iteration   1: 14.958 ops/s
+Iteration   2: 14.748 ops/s
+Iteration   3: 14.833 ops/s
+Iteration   4: 14.941 ops/s
+Iteration   5: 14.791 ops/s
+
+# Run progress: 80.00% complete, ETA 00:01:41
+# Fork: 5 of 5
+# Warmup Iteration   1: 12.143 ops/s
+# Warmup Iteration   2: 15.080 ops/s
+# Warmup Iteration   3: 15.220 ops/s
+# Warmup Iteration   4: 15.246 ops/s
+# Warmup Iteration   5: 15.176 ops/s
+Iteration   1: 15.120 ops/s
+Iteration   2: 14.960 ops/s
+Iteration   3: 15.272 ops/s
+Iteration   4: 15.346 ops/s
+Iteration   5: 15.227 ops/s
+
+
+Result "TP2.MyBenchmark.test_concat_plus":
+  14.969 ±(99.9%) 0.156 ops/s [Average]
+  (min, avg, max) = (14.488, 14.969, 15.346), stdev = 0.209
+  CI (99.9%): [14.812, 15.125] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:08:27
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                          Mode  Cnt   Score   Error  Units
+TP2.MyBenchmark.test_concat_plus  thrpt   25  14.969 ± 0.156  ops/s
+
+Process finished with exit code 0
+
+
+
