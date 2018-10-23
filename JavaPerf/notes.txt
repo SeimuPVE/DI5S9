@@ -199,25 +199,35 @@ MyBenchmark.testStupidWhile  thrpt   25  184631.400 ± 5215.658  ops/s
 Process finished with exit code 0
 
 
-
 Annotations :
 	- Benchmark : permet de lancer un Benchmark (wahou quelle surprise !);
 	- BenchmarkMode : permet de choisir quel type de Benchmark effectuer (http://hg.openjdk.java.net/code-tools/jmh/file/66fb723292d4/jmh-samples/src/main/java/org/openjdk/jmh/samples/JMHSample_02_BenchmarkModes.java) :
-		- Mode.Throughput : 
-		- Mode.AverageTime : 
-		- Mode.SampleTime : 
-		- Mode.SingleShotTime : 
+		- Mode.Throughput : calcul le nombre d'opérations dans un temps donné (in a time unit ?);
+		- Mode.AverageTime : calcul le temps moyen d'execution;
+		- Mode.SampleTime : calcul combien de temps prend une méthode à s'executer (inculding percentiles);
+		- Mode.SingleShotTime : lance une seule méthode à la fois (utile pour les tests à froid);
+		- Mode.All : tous les modes les uns après les autres;
 	- Fork : lorsqu'on lance le Benchmark, plusieurs forks (5 par défauts) sont lancés, avec chacun plusieurs appels à la méthode de test. Cette annotation permet de préciser combien de forks lancer.
-	- Group
-	- GroupThread
-	- Measurement
+	- Group : on met @Group(name) sur tout ce qu'on veut tester et quand on lance le benchmark tout ce qui est dans le groupe est lancé
+	- GroupThread : précise combien de threads sont alloués, @GroupThreads(threadsNumber)
+	- Measurement : Allows you to provide the actual test phase parameters. You can specify number of iterations, how long to run each iteration and number of test invocations in the iteration (usually used with @BenchmarkMode(Mode.SingleShotTime) to measure the cost of a group of operations – instead of using loops).
 	- OutputTimeUnit : utilisé avec TimeUnit.QQCHOSE on choisi quel type d'output est choisi pour le temps d'exécution (secondes, milisecondes, etc...);
-	- State (http://hg.openjdk.java.net/code-tools/jmh/file/66fb723292d4/jmh-samples/src/main/java/org/openjdk/jmh/samples/JMHSample_03_States.java)
+	- State : annotation defines the scope in which an instance of a given class will be available. JMH allows you to run tests in multiple threads simultaneously, so choose the right state :
+		- Scope.Thread : This is a default state. An instance will be allocated for each thread running the given test.
+		- Scope.Benchmark : An instance will be shared across all threads running the same test. Could be used to test multithreaded performance of a state object (or just mark your benchmark with this scope).
+		- Scope.Group : An instance will be allocated per thread group (see Groups section down below).
 	- TearDown
-	- Timeout
-	- Warmup
-	- CompilerControl
-	
+	- Timeout : izi, s'arrête ou bout d'un moment, exemple : @Timeout(time = 10, timeUnit = TimeUnit.SECONDS);
+	- Warmup : Same as @Measurement, but for warmup phase.
+	- CompilerControl : You can give the JIT a hint how to use any method in your test program. By “any method” I mean any method – not just those annotated by @Benchmark. You can use following @CompilerControl modes (there are more, but I am not sure about their usefulness) :
+		- CompilerControl.Mode.DONT_INLINE : This method should not be inlined. Useful to measure the method call cost and to evaluate if it worth to increase the inline threshold for the JVM.
+		- CompilerControl.Mode.INLINE : Ask the compiler to inline this method. Usually should be used in conjunction with Mode.DONT_INLINE to check pros and cons of inlining.
+		- CompilerControl.Mode.EXCLUDE : Do not compile this method – interpret it instead. Useful in holy wars as an argument how good is the JIT.
+
+java.util.concurrent.TimeUnit
+
+Décrire Blackhole !
+
 ====================================================================================================================
 
 
