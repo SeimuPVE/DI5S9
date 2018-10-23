@@ -1,13 +1,50 @@
 # Android
 */gen/*
+*/.idea/*
+*/gradle/*
 */*gradle*/*
 */local.properties/*
 */proguard-rules.pro/*
 
 # JavaPerf
+*/.idea/*
 */target/*
 */.idea/*
 
 # Python
+*/.idea/*
 */__pycache__/*
 */venv/*
+
+# All
+Android/TP2/.idea/
+Android/TP2/gradle/
+Android/TP2_Objects/.idea/
+Android/TP2_Objects/gradle/
+Android/TP3/.idea/
+Android/TP3/gradle/
+Android/TP4/.gradle/
+Android/TP4/.idea/
+Android/TP4/gradle/
+Android/TP5/.idea/
+Android/TP5/gradle/
+Android/TP5b/.idea/
+Android/TP5b/gradle/
+Android/TP6/.idea/
+Android/TP6/gradle/
+JavaPerf/TP2/.idea/
+JavaPerf/TP2/target/
+Python/TP1/.idea/
+Python/TP1/__pycache__/
+Python/TP1/venv/
+Python/TP2/.idea/
+Python/TP2/__pycache__/
+Python/TP2/venv/
+Python/TP3/.idea/
+Python/TP3/__pycache__/
+Python/TP3/venv/
+Python/TP4/.idea/
+Python/TP4/venv/
+Python/TP5/.idea/
+Python/TP5/__pycache__/
+Python/TP5/venv/
