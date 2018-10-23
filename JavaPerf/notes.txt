@@ -216,7 +216,8 @@ Annotations :
 		- Scope.Thread : This is a default state. An instance will be allocated for each thread running the given test.
 		- Scope.Benchmark : An instance will be shared across all threads running the same test. Could be used to test multithreaded performance of a state object (or just mark your benchmark with this scope).
 		- Scope.Group : An instance will be allocated per thread group (see Groups section down below).
-	- TearDown
+	- Setup : indique à JMH que la méthode doit être appelée pour configurer l'objet d'état avant d'être transmis à la méthode de référence
+	- TearDown : indique à JMH que cette méthode doit être appelée pour nettoyer (teardown) l'objet d'état après l'exécution du test.
 	- Timeout : izi, s'arrête ou bout d'un moment, exemple : @Timeout(time = 10, timeUnit = TimeUnit.SECONDS);
 	- Warmup : Same as @Measurement, but for warmup phase.
 	- CompilerControl : You can give the JIT a hint how to use any method in your test program. By “any method” I mean any method – not just those annotated by @Benchmark. You can use following @CompilerControl modes (there are more, but I am not sure about their usefulness) :
