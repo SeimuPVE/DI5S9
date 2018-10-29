@@ -45,7 +45,7 @@ public class MyBenchmark {
         blackhole.consume(BouclesNazes.stupidFor(10000));
     }
 
-    @Benchmark
+    @Benchmark @OutputTimeUnit(TimeUnit.SECONDS) @Fork(1)
     public void testStupidWhile(Blackhole blackhole) {
         blackhole.consume(BouclesNazes.stupidWhile(10000));
     }
