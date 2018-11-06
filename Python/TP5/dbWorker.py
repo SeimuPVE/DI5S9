@@ -1,4 +1,5 @@
 import sqlite3
+import os
 from XMLParser import *
 
 
@@ -195,6 +196,9 @@ class dbWorker:
 
     def writeIntoXML(self, filepath):
         cursor = self.db.cursor()
+
+        if(os.path.exists(filepath)):
+            os.remove(filepath)
 
         # Write communes.
         communesTabs = ['id', 'codeRegion', 'nomRegion', 'codeDepartement', 'codeArrondissement', 'codeCanton',

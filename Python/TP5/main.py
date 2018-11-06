@@ -1,13 +1,15 @@
 from dbWorker import *
 from XMLParser import *
+import os
 
 
 # Question 1 ################################################################
 dbWorker = dbWorker()
 # TODO : mettre une condition pour vérifier si la BDD existe déjà et décommenter les lignes suivantes en conséquence.
-#dbImporter.readCommunes("bdd/communes.csv")
-#dbImporter.readDepartements("bdd/departements.csv")
-#dbImporter.readRegions("bdd/regions.csv")
+if(not os.path.exists('tp5.db')):
+    dbWorker.readCommunes("bdd/communes.csv")
+    dbWorker.readDepartements("bdd/departements.csv")
+    dbWorker.readRegions("bdd/regions.csv")
 print("Question 1 : database up !")
 
 
