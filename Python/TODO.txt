@@ -2,8 +2,8 @@ TP1 : DONE.
 TP2 : DONE.
 TP3 : plus ou moins tout.
 TP4 : DONE.
-TP5 : questions 4 et 5.
-TP6 : question 5.
+TP5 : DONE.
+TP6 : DONE.
 TP7 : all.
 TP8 : all.
 Rapport : TODO.
