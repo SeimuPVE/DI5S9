@@ -1,7 +1,8 @@
 import sqlite3
+from XMLParser import *
 
 
-class dbImporter:
+class dbWorker:
     db = ""
 
     def __init__(self):
@@ -191,3 +192,29 @@ class dbImporter:
                 except Exception as e:
                     pass
             self.db.commit()
+
+    def writeIntoXML(self, filepath):
+        cursor = self.db.cursor()
+
+        # Write communes.
+        communesTabs = ['id', 'codeRegion', 'nomRegion', 'codeDepartement', 'codeArrondissement', 'codeCanton',
+                        'codeCommune', 'nomCommune', 'populationMunicipale', 'populationCompteeAPart',
+                        'populationTotale']
+        cursor.execute("""SELECT * FROM communes""")
+        communesValues = cursor.fetchall()
+        XMLWrite(filepath, "communes", communesTabs, communesValues)
+
+        # Write departments.
+        departementsTabs = ['id', 'codeRegion', 'nomRegion', 'codeDepartement', 'nomDepartement',
+                            'nombreArrondissements', 'nombreCantons', 'nombreCommunes', 'populationMunicipale',
+                            'populationTotale']
+        cursor.execute("""SELECT * FROM departements""")
+        departementsValues = cursor.fetchall()
+        XMLWrite(filepath, "departements", departementsTabs, departementsValues)
+
+        # Write regions.
+        regionsTabs = ['id', 'codeRegion', 'nomRegion', 'nombreArrondissements', 'nombreCantons', 'nombreCommunes',
+                       'populationMunicipale', 'populationTotale']
+        cursor.execute("""SELECT * FROM regions""")
+        regionsValues = cursor.fetchall()
+        XMLWrite(filepath, "regions", regionsTabs, regionsValues)

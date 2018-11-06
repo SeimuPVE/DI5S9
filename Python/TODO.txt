@@ -1,9 +1,9 @@
-TP1 : 3c.
-
-TP2 : voir pour ajouter des améliorations.
-
+TP1 : DONE.
+TP2 : DONE.
 TP3 : plus ou moins tout.
-
 TP4 : DONE.
-
-TP5 : all.
+TP5 : questions 4 et 5.
+TP6 : question 5.
+TP7 : all.
+TP8 : all.
+Rapport : TODO.
