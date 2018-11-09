@@ -1,72 +1,65 @@
-//#include "DHT.h"
-//#include <Wire.h>
-//#include <LiquidCrystal_I2C.h>
-//
-//#define DHT_PIN 3
-//#define DHTTYPE DHT22
-//#define I2C_ADDR 0x27
-//
-//DHT dht(DHT_PIN, DHTTYPE);
-//LiquidCrystal_I2C lcd(I2C_ADDR, 16, 2);
-//
-//
-//void setup() {
-//    lcd.init();
-//    lcd.backlight();
-//    lcd.home();
-//
-//    Serial.begin(9600);
-//    Serial.println("DHT22 test!");
-//
-//    dht.begin();
-//}
-//
-//void loop() {
-//    lcd.setCursor((uint8_t)0, 0);
-//    lcd.print("Hello World !");
-//
-//    float h = dht.readHumidity();
-//    float t = dht.readTemperature();
-//    float f = dht.readTemperature(true);
-//
-//    if (isnan(h) || isnan(t) || isnan(f)) {
-//        Serial.println("Failed to read from DHT sensor!");
-//        return;
-//    }
-//
-//    float hif = dht.computeHeatIndex(f, h);
-//    float hic = dht.computeHeatIndex(t, h, false);
-//
-//    Serial.print("Humidity: ");
-//    Serial.print(h);
-//    Serial.print(" %\t");
-//    Serial.print("Temperature: ");
-//    Serial.print(t);
-//    Serial.print(" *C ");
-//    Serial.print(f);
-//    Serial.print(" *F\t");
-//    Serial.print("Heat index: ");
-//    Serial.print(hic);
-//    Serial.print(" *C ");
-//    Serial.print(hif);
-//    Serial.println(" *F");
-//
-//    delay(2000);
-//}
-
-
+#include "DHT.h"
 #include <Wire.h>
 #include "rgb_lcd.h"
+#include <ChainableLED.h>
 
+#define DHT_PIN 3
+#define DHTTYPE DHT22
+#define LED_PORT_A 7
+#define LED_PORT_B 8
+
+DHT dht(DHT_PIN, DHTTYPE);
 rgb_lcd lcd;
+ChainableLED led(LED_PORT_A, LED_PORT_B, 1);
+float h, t, f;
 
 
 void setup() {
     lcd.begin(16, 2);
-    lcd.setCursor(0, );
-    lcd.print("Hello bro !");
+    lcd.setCursor(0, 0);
+    lcd.print("Let me start");
+    lcd.setCursor(0, 1);
+    lcd.print("please !");
+
+    led.init();
+
+    dht.begin();
 }
 
 void loop() {
-    lcd.print("Hello bro !");
+    h = dht.readHumidity();
+    t = dht.readTemperature();
+    f = dht.readTemperature(true);
+
+    if (isnan(h) || isnan(t) || isnan(f)) {
+        lcd.clear();
+
+        lcd.setCursor(0, 0);
+        lcd.print("Failed to read");
+
+        lcd.setCursor(0, 1);
+        lcd.print("from DHT sensor!");
+    }
+    else {
+        lcd.clear();
+
+        lcd.setCursor(0, 0);
+        lcd.print("Humidity: ");
+        lcd.print(h);
+        lcd.print("%");
+
+        lcd.setCursor(0, 1);
+        lcd.print("Temp:    ");
+        lcd.print(t);
+        lcd.print("*C");
+
+        if(t < 16)
+            led.setColorRGB(0, 0, 0, 255);
+        else if(t > 24)
+            led.setColorRGB(0, 255, 0, 0);
+        else
+            led.setColorRGB(0, 0, 255, 0);
+    }
+
+    delay(2000);
 }
