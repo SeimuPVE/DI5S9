@@ -1,12 +1,10 @@
 import hashlib
 import os.path
 import base64
+import getpass
 from Crypto.Cipher import AES
 
 
-# TODO : add exceptions.
-# TODO : add assert and raise.
-# TODO : hide passwords with *.
 class UserCrypto:
     passfile = "pass.txt"
     username = "admin"
@@ -18,12 +16,12 @@ class UserCrypto:
         self.passfile = passfile
         if(self.userExists()):
             username = input("Username : ")
-            password = input("Password : ")
+            password = getpass.getpass("Password : ")
             self.connect(username, password)
         else:
             username = input("Please, enter a new username : ")
-            password = input("Please, enter a new password : ")
-            password_confirmer = input("Please, confirm the password : ")
+            password = getpass.getpass("Password : ")
+            password_confirmer = getpass.getpass("Please, confirm the password : ")
             self.subscribe(username, password, password_confirmer)
 
     def userExists(self):
