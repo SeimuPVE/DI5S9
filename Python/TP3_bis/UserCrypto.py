@@ -1,14 +1,16 @@
 import hashlib
 import os.path
+import base64
+from Crypto.Cipher import AES
 
 
 # TODO : add exceptions.
 # TODO : add assert and raise.
-# TODO : crypt files with AES256 (PyCryptodome).
+# TODO : hide passwords with *.
 class UserCrypto:
     passfile = "pass.txt"
     username = "admin"
-    password = "PLS_CHANGE_IT"
+    password = ""
     salt = "t'esbiensaléhein ?"
     is_connected = False
 
@@ -34,19 +36,54 @@ class UserCrypto:
         if(password == password_confirm):
             passfile = open(self.passfile, "w")
             salt_password = username + password + username + self.salt
-            passfile.write(username + ":" + hashlib.sha512(salt_password.encode()).hexdigest() + '\n')
-            return True
+            self.password = hashlib.sha512(salt_password.encode()).hexdigest()
+            passfile.write(username + ":" + self.password + '\n')
+            self.is_connected = True
+            return self.is_connected
 
     def connect(self, username, password):
         file = open(self.passfile, "r")
         for line in file:
             if(line.split(":")[0] == username):
                 salt_password = username + password + username + self.salt
-                if (line.split(":")[1][0:-1] == hashlib.sha512(salt_password.encode()).hexdigest()):
-                    print("Wouhouuu !")
-                    return True
+                self.password = hashlib.sha512(salt_password.encode()).hexdigest()
+                if (line.split(":")[1][0:-1] == self.password):
+                    print("Connecté !")
+                    self.is_connected = True
+                    return self.is_connected
                 else:
                     print("Mauvais mot de passe...")
-                    return False
-        print("Tu sais que t'existe pas ? Jt'ai cassé !!")
+                    self.is_connected = False
+                    return self.is_connected
+        print("Cet utilisateur n'existe pas.")
         return False
+
+    def encryptFile(self, filepath):
+        file = open(filepath, "rb")
+        data = b""
+        lines = file.readlines()
+        for line in lines:
+            data = data + line + b"\n"
+
+        cipher = AES.new(base64.b64decode(self.password)[:16], AES.MODE_EAX)
+        ciphertext, tag = cipher.encrypt_and_digest(data)
+
+        file_out = open(filepath + ".encrypted", "wb")
+        [file_out.write(x) for x in (cipher.nonce, tag, ciphertext)]
+
+        file.close()
+        file_out.close()
+
+    def uncryptFile(self, filepath):
+        file_in = open(filepath, "rb")
+        file_out = open(filepath.split(".encrypted")[0], "wb")
+
+        nonce, tag, ciphertext = [file_in.read(x) for x in (16, 16, -1)]
+        cipher = AES.new(base64.b64decode(self.password)[:16], AES.MODE_EAX, nonce)
+
+        data = cipher.decrypt_and_verify(ciphertext, tag)
+        data = data.split(b"\n")
+        [file_out.write(x) for x in data]
+
+        file_in.close()
+        file_out.close()
