@@ -3,7 +3,7 @@ package files;
 import java.util.ArrayList;
 
 
-abstract class filesTemplate {
+abstract class queueTemplate {
     // Attributes.
     protected float lambda;
     protected float mu;
@@ -17,7 +17,7 @@ abstract class filesTemplate {
     protected ArrayList<Float> q = new ArrayList<>();
 
     // Methods.
-    protected filesTemplate(float lambda, float mu) {
+    protected queueTemplate(float lambda, float mu) {
         this.lambda = lambda;
         this.mu = mu;
         calculAll();

@@ -2,7 +2,7 @@ package files;
 
 
 // TODO : if(lambda/mu < 1) -> blocage.
-public class MM1 extends filesTemplate {
+public class MM1 extends queueTemplate {
     public MM1(int lambda, int mu) {
         super(lambda, mu);
     }
