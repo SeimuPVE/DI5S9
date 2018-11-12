@@ -1,7 +1,5 @@
 package files;
 
-import java.util.ArrayList;
-
 
 abstract class queueTemplate {
     // Attributes.
@@ -14,7 +12,6 @@ abstract class queueTemplate {
     protected double Lq;
     protected double W;
     protected double Wq;
-    protected ArrayList<Double> q = new ArrayList<>();
 
     // Methods.
     protected queueTemplate(double lambda, double mu) {
@@ -62,5 +59,5 @@ abstract class queueTemplate {
         return Wq;
     }
 
-    abstract double getQ(int j);
+    abstract double getQ(int j) throws Exception;
 }

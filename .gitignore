@@ -7,18 +7,19 @@ local.properties
 proguard-rules.pro
 build
 
-# JavaPerf
+# Java
 .idea
 target
 *.iml
 .externalNativeBuild
+out
 
 # Python
 .idea
 venv
 __pycache__
 
-# M2M
+# Arduino
 .travis.yml
 cmake-build-debug
 cmake

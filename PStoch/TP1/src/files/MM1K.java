@@ -1,7 +1,7 @@
 package files;
 
-
 import static java.lang.Math.pow;
+
 
 public class MM1K extends queueTemplate {
     private int k;
