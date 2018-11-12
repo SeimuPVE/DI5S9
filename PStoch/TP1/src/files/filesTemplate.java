@@ -5,38 +5,38 @@ import java.util.ArrayList;
 
 abstract class filesTemplate {
     // Attributes.
-    protected int alpha;
-    protected int nu;
+    protected float lambda;
+    protected float mu;
 
     protected float rho;
     protected float q0;
     protected float L;
     protected float Lq;
-    protected float w;
-    protected float wq;
+    protected float W;
+    protected float Wq;
     protected ArrayList<Float> q = new ArrayList<>();
 
     // Methods.
-    protected filesTemplate(int alpha, int nu) {
-        this.alpha = alpha;
-        this.nu = nu;
+    protected filesTemplate(float lambda, float mu) {
+        this.lambda = lambda;
+        this.mu = mu;
+        calculAll();
     }
 
     abstract void calculAll();
-    abstract float calculRho();
-    abstract float calculQ0();
-    abstract float calculL();
-    abstract float calculLq();
-    abstract float calculW();
-    abstract float calculWq();
-    abstract ArrayList<Float> calculQ(int j);
+    abstract void calculRho();
+    abstract void calculQ0();
+    abstract void calculL();
+    abstract void calculLq();
+    abstract void calculW();
+    abstract void calculWq();
 
-    protected int getAlpha() {
-        return alpha;
+    protected float getLambda() {
+        return lambda;
     }
 
-    protected int getNu() {
-        return nu;
+    protected float getMu() {
+        return mu;
     }
 
     protected float getRho() {
@@ -56,14 +56,12 @@ abstract class filesTemplate {
     }
 
     protected float getW() {
-        return w;
+        return W;
     }
 
     protected float getWq() {
-        return wq;
+        return Wq;
     }
 
-    protected ArrayList<Float> getQ() {
-        return q;
-    }
+    abstract float getQ(int j);
 }

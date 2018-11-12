@@ -1,50 +1,60 @@
 package files;
 
-import java.util.ArrayList;
 
-
+// TODO : if(lambda/mu < 1) -> blocage.
 public class MM1 extends filesTemplate {
-    public MM1(int alpha, int nu) {
-        super(alpha, nu);
+    public MM1(int lambda, int mu) {
+        super(lambda, mu);
     }
 
     @Override
     void calculAll() {
-
+        calculRho();
+        calculQ0();
+        calculL();
+        calculLq();
+        calculW();
+        calculWq();
     }
 
     @Override
-    float calculRho() {
-        return 0;
+    void calculRho() {
+        rho = lambda/ mu;
     }
 
     @Override
-    float calculQ0() {
-        return 0;
+    void calculQ0() {
+        q0 = 1 - rho;
     }
 
     @Override
-    float calculL() {
-        return 0;
+    void calculL() {
+        L = lambda/(mu -lambda);
     }
 
     @Override
-    float calculLq() {
-        return 0;
+    void calculLq() {
+        Lq = (lambda*lambda) / (mu * (mu -lambda));
     }
 
     @Override
-    float calculW() {
-        return 0;
+    void calculW() {
+        W = 1 / (mu / lambda);
     }
 
     @Override
-    float calculWq() {
-        return 0;
+    void calculWq() {
+        Wq = lambda / (mu * (mu - lambda));
     }
 
     @Override
-    ArrayList<Float> calculQ(int j) {
-        return null;
+    float getQ(int j) {
+        float rhoPuissance = rho;
+        int i;
+
+        for(i = 1; i < j; i++)
+            rhoPuissance *= rho;
+
+        return rhoPuissance * (1-rho);
     }
 }
