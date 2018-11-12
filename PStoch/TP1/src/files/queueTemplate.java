@@ -5,22 +5,21 @@ import java.util.ArrayList;
 
 abstract class queueTemplate {
     // Attributes.
-    protected float lambda;
-    protected float mu;
+    protected double lambda;
+    protected double mu;
 
-    protected float rho;
-    protected float q0;
-    protected float L;
-    protected float Lq;
-    protected float W;
-    protected float Wq;
-    protected ArrayList<Float> q = new ArrayList<>();
+    protected double rho;
+    protected double q0;
+    protected double L;
+    protected double Lq;
+    protected double W;
+    protected double Wq;
+    protected ArrayList<Double> q = new ArrayList<>();
 
     // Methods.
-    protected queueTemplate(float lambda, float mu) {
+    protected queueTemplate(double lambda, double mu) {
         this.lambda = lambda;
         this.mu = mu;
-        calculAll();
     }
 
     abstract void calculAll();
@@ -31,37 +30,37 @@ abstract class queueTemplate {
     abstract void calculW();
     abstract void calculWq();
 
-    protected float getLambda() {
+    protected double getLambda() {
         return lambda;
     }
 
-    protected float getMu() {
+    protected double getMu() {
         return mu;
     }
 
-    protected float getRho() {
+    protected double getRho() {
         return rho;
     }
 
-    protected float getQ0() {
+    protected double getQ0() {
         return q0;
     }
 
-    protected float getL() {
+    protected double getL() {
         return L;
     }
 
-    protected float getLq() {
+    protected double getLq() {
         return Lq;
     }
 
-    protected float getW() {
+    protected double getW() {
         return W;
     }
 
-    protected float getWq() {
+    protected double getWq() {
         return Wq;
     }
 
-    abstract float getQ(int j);
+    abstract double getQ(int j);
 }

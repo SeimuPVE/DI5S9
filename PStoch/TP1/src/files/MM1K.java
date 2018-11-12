@@ -1,10 +1,14 @@
 package files;
 
 
-// TODO : if(lambda/mu < 1) -> blocage.
-public class MM1 extends queueTemplate {
-    public MM1(int lambda, int mu) {
+import static java.lang.Math.pow;
+
+public class MM1K extends queueTemplate {
+    private int k;
+
+    protected MM1K(double lambda, double mu, int k) {
         super(lambda, mu);
+        this.k = k;
         calculAll();
     }
 
@@ -20,7 +24,7 @@ public class MM1 extends queueTemplate {
 
     @Override
     void calculRho() {
-        rho = lambda/ mu;
+        rho = lambda/mu;
     }
 
     @Override
@@ -30,12 +34,18 @@ public class MM1 extends queueTemplate {
 
     @Override
     void calculL() {
-        L = lambda/(mu -lambda);
+        if(rho == 1)
+            L = k/2;
+        else {
+            double top = rho * (1 - (k+1) * pow(rho, k) + k*pow(rho, k+1));
+            double down = (1-rho) * (1-pow(rho, k+1));
+            L = top / down;
+        }
     }
 
     @Override
     void calculLq() {
-        Lq = (lambda*lambda) / (mu * (mu -lambda));
+        Lq = L - (1 - q0);
     }
 
     @Override
@@ -50,12 +60,9 @@ public class MM1 extends queueTemplate {
 
     @Override
     double getQ(int j) {
-        double rhoPuissance = rho;
-        int i;
-
-        for(i = 1; i < j; i++)
-            rhoPuissance *= rho;
-
-        return rhoPuissance * (1-rho);
+        if(rho == 1)
+            return 1 / (k-1);
+        else
+            return ((1-rho) * pow(rho, j)) / ((1 - pow(rho, k+1)));
     }
 }
