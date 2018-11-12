@@ -6,9 +6,12 @@ import static java.lang.Math.pow;
 public class MM1K extends queueTemplate {
     private int k;
 
-    protected MM1K(double lambda, double mu, int k) {
+    protected MM1K(double lambda, double mu, int k) throws Exception {
         super(lambda, mu);
         this.k = k;
+
+        if(k <= 1) throw new Exception("K is too big, you need to use MM1 queue.");
+
         calculAll();
     }
 

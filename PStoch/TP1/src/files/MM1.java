@@ -3,8 +3,11 @@ package files;
 
 // TODO : if(lambda/mu < 1) -> blocage.
 public class MM1 extends queueTemplate {
-    public MM1(int lambda, int mu) {
+    public MM1(int lambda, int mu) throws Exception {
         super(lambda, mu);
+
+        if(lambda/mu < 1) throw new Exception("The parameters cause a block.");
+
         calculAll();
     }
 
