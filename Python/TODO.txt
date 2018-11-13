@@ -1,6 +1,5 @@
 TP1 : correct print of student_list.
 TP1 : try to use raise and assert.
-TP4 : change the data.
 TP7 : question 5.
 TP8 : all.
 Rapport : TODO.
