@@ -1,4 +1,4 @@
-package files;
+package queues;
 
 
 public class MM1 extends queueTemplate {

@@ -1,19 +1,20 @@
-package files
+package queues
 
 import org.junit.Before
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import org.junit.Test
 
+import static org.junit.Assert.assertEquals
 
-class queueTestMM1 {
-    private MM1 queue;
+class queueTestMM1K {
+    private MM1K queue;
 
     @Before
     public void setUp() throws Exception {
         // TODO.
         double lambda = 0.0;
         double mu = 0.0;
-        queue = new MM1(lambda, mu);
+        int k = 0;
+        queue = new MM1K(lambda, mu, k);
     }
 
     @Test

@@ -1,4 +1,4 @@
-package files;
+package queues;
 
 import static java.lang.Math.pow;
 

@@ -1,4 +1,4 @@
-package files;
+package queues;
 
 
 abstract class queueTemplate {
