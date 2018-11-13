@@ -10,7 +10,7 @@ public class MM1K extends queueTemplate {
         super(lambda, mu);
         this.k = k;
 
-        if(k <= 1) throw new Exception("K is too big, you need to use MM1 queue.");
+        if(k <= 1) throw new Exception("K is too small, you need to use MM1 queue.");
 
         calculAll();
     }
@@ -32,7 +32,7 @@ public class MM1K extends queueTemplate {
 
     @Override
     void calculQ0() {
-        q0 = 1 - rho;
+        q0 = getQ(0);
     }
 
     @Override
