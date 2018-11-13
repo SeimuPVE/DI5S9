@@ -18,3 +18,5 @@ Exercice 1 :
 Exercice 2 :
 	Avant modification :
 		
+	Suppression de quelques tests pour gagner du temps dans les benchmarks :
+		
