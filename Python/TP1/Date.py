@@ -8,12 +8,12 @@ class Date:
             self.jour = args[0]
             self.mois = args[1]
             self.annee = args[2]
-        elif(1):
+        elif(len(args) == 1):
             self.jour = args[0].split('/', 0)
             self.mois = args[0].split('/', 1)
             self.annee = args[0].split('/', 2)
         else:
-            raise Exception
+            raise Exception("Date not valid.")
 #            print("TODO : exception.")
 
     def __eq__(self, o: object):

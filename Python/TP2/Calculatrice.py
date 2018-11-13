@@ -60,19 +60,6 @@ class Calculatrice:
         b = Button(self.window, text="C", command=self.C_function, width=16, height=2)
         b.grid(row=1, column=2, columnspan=2)
 
-        #buttons = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "0"]
-        #row = 2
-        #column = 0
-        #for button_text in buttons:
-        #    b = Button(window, text=button_text, command=lambda: number_function(button_text), width=6, height=2)
-        #    b.grid(row=row, column=column)
-        #    if column == 2:
-        #        column = 0
-        #        row = row + 1
-        #    else:
-        #        column = column + 1
-
-
         b = Button(self.window, text=7, command=lambda: self.number_function(7), width=6, height=2)
         b.grid(row=2, column=0)
 
