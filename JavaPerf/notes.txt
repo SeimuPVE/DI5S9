@@ -1,0 +1,20 @@
+Exercice 1 :
+	Avant modification :
+		Benchmark                         Mode  Cnt       Score        Error  Units
+		BenchmarkExercice1.testMultiply  thrpt    5  164524.817 ± 179719.151  ops/s
+	Après modification 1 :
+		Benchmark                         Mode  Cnt       Score        Error  Units
+		BenchmarkExercice1.testMultiply  thrpt    5  925811.773 ± 586380.859  ops/s
+	Après modification 2 :
+		Benchmark                         Mode  Cnt       Score        Error  Units
+		BenchmarkExercice1.testMultiply  thrpt    5  994559.925 ± 112902.175  ops/s
+	Après modification 3 :
+		Benchmark                         Mode  Cnt       Score        Error  Units
+		BenchmarkExercice1.testMultiply  thrpt    5  881173.324 ± 171307.359  ops/s
+	Au final :
+		On garde la modification 2 qui correspond à la v03.
+		C'est 6 fois plus rapide qu'au début !
+
+Exercice 2 :
+	Avant modification :
+		
