@@ -5,7 +5,7 @@ public class MM1 extends queueTemplate {
     public MM1(double lambda, double mu) throws Exception {
         super(lambda, mu);
 
-        if(lambda/mu < 1) throw new Exception("The parameters cause a block.");
+        if(lambda/mu >= 1) throw new Exception("The parameters cause a block.");
 
         calculAll();
     }
@@ -42,7 +42,7 @@ public class MM1 extends queueTemplate {
 
     @Override
     void calculW() {
-        W = 1 / (mu / lambda);
+        W = 1 / (mu - lambda);
     }
 
     @Override

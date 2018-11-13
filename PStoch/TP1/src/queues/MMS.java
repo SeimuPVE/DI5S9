@@ -28,7 +28,12 @@ public class MMS extends queueTemplate{
 
     @Override
     void calculAll() {
-
+        calculRho();
+        calculQ0();
+        calculLq();
+        calculL();
+        calculWq();
+        calculW();
     }
 
     @Override
@@ -39,12 +44,13 @@ public class MMS extends queueTemplate{
     @Override
     void calculQ0() {
         double som = 0;
+        int j;
 
-        for(int j =0; j<s; j++)
-            som = pow((rho*s),j)/factorielle(j);
+        for(j = 0; j < s; j++)
+            som += pow((rho * s), j) / factorielle(j);
 
-        q0 = som + pow(rho*s, s)/factorielle(s)*(1-rho);
-        q0 = 1/q0;
+        som += pow(rho * s, s) / (factorielle(s) * (1 - rho));
+        q0 = 1 / som;
     }
 
     @Override

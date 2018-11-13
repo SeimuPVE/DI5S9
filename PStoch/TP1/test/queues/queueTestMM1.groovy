@@ -10,39 +10,33 @@ class queueTestMM1 {
 
     @Before
     public void setUp() throws Exception {
-        // TODO.
-        double lambda = 0.0;
-        double mu = 0.0;
+        double lambda = 10.0;
+        double mu = 12.0;
         queue = new MM1(lambda, mu);
     }
 
     @Test
-    void testQ0() {
-        // TODO.
-        assertEquals(0.1, queue.getQ0());
+    void testRho() {
+        assertEquals(10/12, queue.getRho(), 0.01);
     }
 
     @Test
     public void testL() {
-        // TODO.
-        assertEquals(0.1, queue.getL());
+        assertEquals(5.0, queue.getL(), 0.01);
     }
 
     @Test
     public void testLq() {
-        // TODO.
-        assertEquals(0.1, queue.getLq());
+        assertEquals(4.16, queue.getLq(), 0.01);
     }
 
     @Test
     public void testW() {
-        // TODO.
-        assertEquals(0.1, queue.getW());
+        assertEquals(0.5, queue.getW(), 0.01);
     }
 
     @Test
     public void testWq() {
-        // TODO.
-        assertEquals(0.1, queue.getWq());
+        assertEquals(0.42, queue.getWq(), 0.01);
     }
 }

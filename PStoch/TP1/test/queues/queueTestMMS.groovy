@@ -11,39 +11,39 @@ class queueTestMMS {
     @Before
     public void setUp() throws Exception {
         // TODO.
-        double lambda = 0.0;
-        double mu = 0.0;
-        int s = 0;
+        double lambda = 10.0;
+        double mu = 12.0;
+        int s = 2;
         queue = new MMS(lambda, mu, s);
     }
 
     @Test
+    void testRho() {
+        assertEquals(5/12, queue.getRho(), 0.01);
+    }
+
+    @Test
     void testQ0() {
-        // TODO.
-        assertEquals(0.1, queue.getQ0());
+        assertEquals(7/17, queue.getQ0(), 0.01);
     }
 
     @Test
     public void testL() {
-        // TODO.
-        assertEquals(0.1, queue.getL());
+        assertEquals(1.01, queue.getL(), 0.01);
     }
 
     @Test
     public void testLq() {
-        // TODO.
-        assertEquals(0.1, queue.getLq());
+        assertEquals(0.175, queue.getLq(), 0.01);
     }
 
     @Test
     public void testW() {
-        // TODO.
-        assertEquals(0.1, queue.getW());
+        assertEquals(0.101, queue.getW(), 0.01);
     }
 
     @Test
     public void testWq() {
-        // TODO.
-        assertEquals(0.1, queue.getWq());
+        assertEquals(0.018, queue.getWq(), 0.01);
     }
 }
