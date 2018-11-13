@@ -4,7 +4,7 @@ class Date:
     annee = 0
 
     def __init__(self, *args):
-        if(size(args) == 3):
+        if(len(args) == 3):
             self.jour = args[0]
             self.mois = args[1]
             self.annee = args[2]
@@ -13,7 +13,8 @@ class Date:
             self.mois = args[0].split('/', 1)
             self.annee = args[0].split('/', 2)
         else:
-            print("TODO : exception.")
+            raise Exception
+#            print("TODO : exception.")
 
     def __eq__(self, o: object):
         if(self.jour == o.jour and self.mois == o.mois and self.annee == o.annee):
