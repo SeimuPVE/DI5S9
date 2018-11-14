@@ -1,4 +1,3 @@
-TP1 : correct print of student_list.
 TP1 : try to use raise and assert.
 TP7 : question 5.
 TP8 : all.

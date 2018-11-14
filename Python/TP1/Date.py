@@ -5,13 +5,14 @@ class Date:
 
     def __init__(self, *args):
         if(len(args) == 3):
-            self.jour = args[0]
-            self.mois = args[1]
-            self.annee = args[2]
+            self.jour = int(args[0])
+            self.mois = int(args[1])
+            self.annee = int(args[2])
         elif(len(args) == 1):
-            self.jour = args[0].split('/', 0)
-            self.mois = args[0].split('/', 1)
-            self.annee = args[0].split('/', 2)
+            date = args[0].split('\n')[0]
+            self.jour = int(date.split('/')[0])
+            self.mois = int(date.split('/')[1])
+            self.annee = int(date.split('/')[2])
         else:
             raise Exception("Date not valid.")
 #            print("TODO : exception.")
@@ -33,4 +34,4 @@ class Date:
         return False
 
     def __str__(self):
-        return self.jour + '/' + self.mois + '/' + self.annee
+        return str(self.jour) + '/' + str(self.mois) + '/' + str(self.annee)

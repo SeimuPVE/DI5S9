@@ -1,4 +1,6 @@
+from datetime import date
 from Date import *
+
 
 class Etudiant:
     nom = ""
@@ -10,14 +12,37 @@ class Etudiant:
     def __init__(self, nom, prenom, date_naissance):
         self.nom = nom
         self.prenom = prenom
-        self.date = Date(date_naissance)
-        self.adresslec()
+        self.date_naissance = Date(date_naissance)
+        self.addressmail()
+        self.makeAge()
 
-    def adresslec(self):
-        address = self.nom + '.' + self.prenom + "@etu.univ-tours.fr"
+    def addressmail(self):
+        self.address = self.nom.lower().replace(" ", "") + '.' + self.prenom.lower().replace(" ", "") + "@etu.univ-tours.fr"
 
+    # TODO.
     def makeAge(self):
-        print("makeAge TODO.")
+        today = date.today()
+        self.age = today.year - self.date_naissance.annee
+        if(self.date_naissance.mois == today.month):
+            if(self.date_naissance.jour < today.day):
+                self.age -= 1
+        elif(self.date_naissance.mois < today.month):
+                self.age -= 1
+
+    def getNom(self):
+        return self.nom
+
+    def getPrenom(self):
+        return self.prenom
+
+    def getAddress(self):
+        return self.address
+
+    def getAge(self):
+        return self.age
+
+    def getDateNaissance(self):
+        return self.date_naissance
 
     def __str__(self) -> str:
-        return self.prenom + self.nom + " a " + str(self.age) + " ans et son adresse mail est : " + self.address
+        return self.prenom[0] + self.prenom[1:].lower() + " " + self.nom[0] + self.nom[1:].lower() + " a " + str(self.age) + " ans et son adresse mail est : " + self.address

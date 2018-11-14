@@ -3,12 +3,12 @@ from EtudiantReader import *
 
 
 # Question 1
-print("Bonjour tout le monde !")
-
-# Question 2
-editor = Editor()
-editor.menu()
+# print("Bonjour tout le monde !")
+#
+# # Question 2
+# editor = Editor()
+# editor.menu()
 
 # Question 5
-student_list = EtudiantReader()
+student_list = EtudiantReader("fichetu.csv")
 print(student_list)
