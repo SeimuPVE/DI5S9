@@ -1,4 +1,0 @@
-TP1 : try to use raise and assert.
-TP7 : question 5.
-TP8 : all.
-Rapport : TODO.
