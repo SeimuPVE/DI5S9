@@ -1,5 +1,7 @@
 import numpy as np
 
+# python -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+
 
 def tableau():
     x = np.random.rand(4, 3, 2)
@@ -13,26 +15,28 @@ def tableau():
     print("Tableau :\n", x)
 
 
-m1 = np.random.randint(9, size=(3, 3))
-print("Matrice 1 : \n ", m1)
+tableau()
 
-m2 = np.random.random_integers(2, 10, size=(3, 3))
-print("Matrice 2 : \n ", m2)
+m1 = np.array([[0., 1., 2.],
+               [3., 4., 5.],
+               [6., 7., 8.]])
 
-prod = np.dot(m1, m2)
-print("Produit M1M2 : \n ", prod)
+m2 = np.array([[2., 3., 4.],
+               [5., 6., 7.],
+               [8., 9., 10.]])
 
-trans = m1.transpose()
-print("Transposé de la M1 : \n ", trans)
+m3 = np.array([[2., 3.],
+               [4., 5.]])
 
-detM1 = np.linalg.det(m1)
-print("Determinant de M1 : \n ", detM1)
+m4 = np.array([[1., 1.],
+               [0., 1.]])
 
-invM1 = np.linalg.inv(m1)
-print("Inverse de M1 : \n ", invM1)
+m5 = np.array([[1.], [1.]])
 
-solvM1M2 = np.linalg.solve(m1, m2)
-print("Résolution du systeme M1M2 : \n ", solvM1M2)
-
-valVectProprM1 = np.linalg.eig(m1)
-print("Vecteurs propres M1 : \n ", valVectProprM1)
+print("Produit M1M2 (avec *, multiplie chaque champ du tableau) : \n ", m1 * m2)
+print("Produit M1M2 (avec dot, multiplie les deux matrices) : \n ", np.dot(m1, m2))
+print("Transposée de la matrice M1 : \n ", m1.transpose())
+print("Determinant de M3 : \n ", np.linalg.det(m3))
+print("Inverse de M3 : \n ", np.linalg.inv(m3))
+print("Résolution du systeme M1M2 : \n ", np.linalg.solve(m4, m5))
+print("Vecteurs propres de M1 : \n ", np.linalg.eig(m1))
