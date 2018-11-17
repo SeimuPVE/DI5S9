@@ -15,8 +15,28 @@ Exercice 1 :
 		On garde la modification 2 qui correspond à la v03.
 		C'est 6 fois plus rapide qu'au début !
 
-Exercice 2 :
+Exercice 3a :
 	Avant modification :
 		
 	Suppression de quelques tests pour gagner du temps dans les benchmarks :
 		
+Exercice 4 :
+	Avant modification :
+		Benchmark                          Mode  Cnt        Score       Error  Units
+		BenchmarkExercice4.testExercice4  thrpt    5  1322168.071 ± 77934.849  ops/s
+	Après midification 1 (près trop légers) :
+		Benchmark                          Mode  Cnt        Score       Error  Units
+		BenchmarkExercice4.testExercice4  thrpt    5  1413873.705 ± 28725.205  ops/s
+	Après modification 2 (ne change quasiment rien) :
+		Benchmark                          Mode  Cnt        Score       Error  Units
+		BenchmarkExercice4.testExercice4  thrpt    5  1428727.462 ± 10909.671  ops/s
+	Après modification 3 (suppression du passage par une List) :
+		Benchmark                          Mode  Cnt        Score       Error  Units
+		BenchmarkExercice4.testExercice4  thrpt    5  2290046.138 ± 37795.286  ops/s
+	Au final :
+		On garde la modification 3 qui correspond à celle sans numéro de version.
+		C'est 1.6 fois plus rapide qu'au début.
+		
+Exercice 5 :
+	Avant modification :
+	
