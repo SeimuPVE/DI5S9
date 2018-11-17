@@ -17,7 +17,7 @@ Exercice 1 :
 
 Exercice 3a :
 	Avant modification :
-		
+		java.lang.OutOfMemoryError		
 	Suppression de quelques tests pour gagner du temps dans les benchmarks :
 		
 Exercice 4 :
@@ -39,4 +39,11 @@ Exercice 4 :
 		
 Exercice 5 :
 	Avant modification :
-	
+		Benchmark                          Mode  Cnt        Score       Error  Units
+		BenchmarkExercice5.testExercice5  thrpt    5  6345275.017 ± 70272.743  ops/s
+	Après modification 1 (utilisation du type du paramètre) :
+		Benchmark                          Mode  Cnt          Score         Error  Units
+		BenchmarkExercice5.testExercice5  thrpt    5  112431800.827 ± 1044398.305  ops/s
+	Au final :
+		On garde la modification comme ça.
+		C'est à peu près 17-18 fois plus rapide !!

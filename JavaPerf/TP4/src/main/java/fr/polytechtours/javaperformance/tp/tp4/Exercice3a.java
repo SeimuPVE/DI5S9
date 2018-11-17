@@ -31,20 +31,19 @@ public class Exercice3a {
     }
 
     public Integer exercice3a(final Integer nbThreads, final Integer nbIterationByThread) throws ExecutionException, InterruptedException {
-//        final ExecutorService service = Executors.newFixedThreadPool(nbThreads);
-//        final List<Future<Runnable>> futures = new ArrayList<>();
-//
-//        for (Integer i = 0; i < nbThreads; i++) {
-//            final Future future = service.submit(() -> iterate(nbIterationByThread));
-//            futures.add(future);
-//        }
-//
-//        // Wait for it...
-//        for (final Future<Runnable> future : futures) {
-//            future.get();
-//        }
-//
-//        return count;
-        return 0;
+        final ExecutorService service = Executors.newFixedThreadPool(nbThreads);
+        final List<Future<Runnable>> futures = new ArrayList<>();
+
+        for (Integer i = 0; i < nbThreads; i++) {
+            final Future future = service.submit(() -> iterate(nbIterationByThread));
+            futures.add(future);
+        }
+
+        // Wait for it...
+        for (final Future<Runnable> future : futures) {
+            future.get();
+        }
+
+        return count;
     }
 }
