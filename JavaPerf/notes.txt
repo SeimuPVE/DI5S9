@@ -15,6 +15,14 @@ Exercice 1 :
 		On garde la modification 2 qui correspond à la v03.
 		C'est 6 fois plus rapide qu'au début !
 
+Exercice 2 :
+	Avant modification :
+		Benchmark                           Mode  Cnt  Score   Error  Units
+		BenchmarkExercice2.testExercice3a  thrpt    5  0.332 ± 0.001  ops/s
+	Après modification (sans récursivité) :
+		Benchmark                           Mode  Cnt          Score         Error  Units
+		BenchmarkExercice2.testExercice3a  thrpt    5  347664236.546 ± 2528973.846  ops/s	
+
 Exercice 3a :
 	Avant modification :
 		java.lang.OutOfMemoryError		
