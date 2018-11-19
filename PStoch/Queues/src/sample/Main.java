@@ -1,23 +1,25 @@
 package sample;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javax.swing.*;
+import java.awt.event.*;
 
-public class Main extends Application {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+public class Main extends JFrame {
+    public Main() {
+        super("titre de l'application");
+
+        WindowListener l = new WindowAdapter() {
+            public void windowClosing(WindowEvent e){
+                System.exit(0);
+            }
+        };
+
+        addWindowListener(l);
+        setSize(200,100);
+        setVisible(true);
     }
 
-
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(String [] args){
+        JFrame frame = new Main();
     }
 }
