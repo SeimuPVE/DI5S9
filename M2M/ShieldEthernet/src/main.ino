@@ -2,12 +2,17 @@
 #include <Ethernet.h>
 #include "Seeed_BME280.h"
 #include <Wire.h>
+#include <ChainableLED.h>
+
+#define LED_PORT_A 7
+#define LED_PORT_B 8
 
 byte mac[] = {0x90, 0xA2, 0xDA, 0x0F, 0xFB, 0xBE};
 IPAddress ip(192, 168, 0, 1);
 EthernetServer server(80);
 
 BME280 bme280;
+ChainableLED led(LED_PORT_A, LED_PORT_B, 1);
 
 String buffer;
 char c;
@@ -28,6 +33,7 @@ void setup() {
     Serial.print("Server is at ");
     Serial.println(Ethernet.localIP());
 
+    led.init();
     if(!bme280.init())
         Serial.println("Error with BME280 !");
 }
@@ -35,28 +41,35 @@ void setup() {
 void loop() {
     EthernetClient client = server.available();
 
-    if (client) {
+    if(client) {
         Serial.println("New client");
 
         // An http request ends with a blank line.
         bool currentLineIsBlank = true;
 
+        buffer = "";
         while(client.connected()) {
             if(client.available()) {
-                buffer = ""
                 c = client.read();
-//                Serial.write(c);
-                Serial.println(buffer);
 
                 // If you've gotten to the end of the line (received a newline character) and the line is blank, the http request has ended, so you can send a reply.
                 if(c == '\n' && currentLineIsBlank) {
+                    // Print the data sent by the web browser.
+                    if(buffer.indexOf("led_control=") != -1)
+                        if(buffer.charAt(buffer.indexOf("led_control=") + 12) == 'r')
+                            led.setColorRGB(0, 255, 0, 0);
+                        else if(buffer.charAt(buffer.indexOf("led_control=") + 12) == 'g')
+                            led.setColorRGB(0, 0, 255, 0);
+                        else if(buffer.charAt(buffer.indexOf("led_control=") + 12) == 'b')
+                            led.setColorRGB(0, 0, 0, 255);
+
                     client.println("HTTP/1.1 200 OK");
                     client.println("Content-Type: text/html");
                     client.println("Connection: close");
-                    client.println("Refresh: 5");
                     client.println();
                     client.println("<!DOCTYPE HTML>");
                     client.println("<meta charset=\"UTF-8\"> ");
+                    client.println("<meta http-equiv=\"refresh\" content=\"5; URL=http://192.168.0.1/\">");
                     client.println("<html>");
 
                     // Output the value of each analog input pin.
@@ -92,6 +105,7 @@ void loop() {
                     client.println("</form>");
                     client.println("</section>");
                     client.println("</html>");
+
                     break;
                 }
 
