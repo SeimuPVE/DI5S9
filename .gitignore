@@ -13,6 +13,7 @@ target
 *.iml
 .externalNativeBuild
 out
+*.dat
 
 # Python
 .idea
