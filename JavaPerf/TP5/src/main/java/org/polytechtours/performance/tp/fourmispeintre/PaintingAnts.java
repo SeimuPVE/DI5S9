@@ -13,7 +13,7 @@ import java.util.Vector;
 public class PaintingAnts extends java.applet.Applet implements Runnable {
     private static final long serialVersionUID = 1L;
 
-    // Paramètres
+    // Paramètres.
     private int mLargeur;
     private int mHauteur;
 
@@ -49,7 +49,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
      */
     @Override
     public String getAppletInfo() {
-      return "Painting Ants";
+        return "Painting Ants";
     }
 
     /**
@@ -93,14 +93,15 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
 
         // Lecture de l'image.
         lFileName = urlLoader.findResource("images/" + getParameter("Img"));
+
         try {
-            if (lFileName != null)
+            if(lFileName != null)
                 mBaseImage = javax.imageio.ImageIO.read(lFileName);
         }
         catch (java.io.IOException ex) {
         }
 
-        if (mBaseImage != null) {
+        if(mBaseImage != null) {
             mLargeur = mBaseImage.getWidth();
             mHauteur = mBaseImage.getHeight();
             mDimension.setSize(mLargeur, mHauteur);
@@ -119,15 +120,14 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
      */
     @Override
     public void paint(Graphics g) {
-      if (mBaseImage == null)
-        return;
+        if (mBaseImage == null)
+            return;
 
-      g.drawImage(mBaseImage, 0, 0, this);
+        g.drawImage(mBaseImage, 0, 0, this);
     }
 
     /**
-     * Mettre en pause
-     *
+     * Mettre en pause.
      */
     public void pause() {
       mPause = !mPause;
@@ -156,6 +156,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
         try {
             lMax = Float.valueOf(lStrTok.nextToken()).floatValue();
             // System.out.println(" lMax: "+lMax);
+
             if (lMax > lMin) // On choisit un nombre entre lMin et lMax.
                 lResult = (float) (Math.random() * (lMax - lMin)) + lMin;
         }

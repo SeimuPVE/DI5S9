@@ -24,6 +24,21 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.openjdk.jmh</groupId>
+			<artifactId>jmh-archetypes</artifactId>
+			<version>1.21</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjdk.jmh</groupId>
+			<artifactId>jmh-java-benchmark-archetype</artifactId>
+			<version>1.21</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjdk.jmh</groupId>
+			<artifactId>jmh-parent</artifactId>
+			<version>1.21</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -35,7 +50,6 @@
 					<source>${java.sources}</source>
 					<target>${java.target}</target>
 					<debug>true</debug>
-					<failOnOver>false</failOnOver>
 					<optimize>true</optimize>
 					<showDeprecation>true</showDeprecation>
 					<showWarnings>true</showWarnings>
