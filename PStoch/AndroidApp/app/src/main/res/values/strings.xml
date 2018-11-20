@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">PStoch</string>
+    <string name="label_1">Nombre moyen d\'arrivées (sur 1h) (lambda) :</string>
+    <string name="label_2">Temps moyen de service (par heures) (mu) :</string>
+    <string name="label_3">Nombre de serveurs :</string>
+</resources>
