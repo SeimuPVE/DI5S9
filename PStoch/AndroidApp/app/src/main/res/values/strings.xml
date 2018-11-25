@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">PStochCalculator</string>
+    <string name="value_label_top_1">Nombre moyen d\'arrivées (sur 1h)(lambda) :</string>
+    <string name="value_label_top_2">Temps moyen de service (par heures) (mu) :</string>
+    <string name="value_label_top_3">Nombre de serveurs :</string>
+    <string name="value_label_top_infinite">Infinité de clients</string>
+    <string name="value_label_top_finite">Nombre de clients limité</string>
+    <string name="value_label_top_4">Nombre de clients maximum :</string>
+    <string name="value_label_button">Valider</string>
+    <string name="value_label_down_1">Résultats :</string>
+    <string name="value_label_down_2">Nombre moyen de clients dans le système (L) :</string>
+    <string name="value_label_down_3">Nombre moyen de clients dans la file (Lq) :</string>
+    <string name="value_label_down_4">Durée moyenne d\'attente dans le système (W) :</string>
+    <string name="value_label_down_5">Durée moyenne d\'attente dans la file (Wq) :</string>
+    <string name="value_label_default_result">...</string>
+    <string name="value_label_default_result">...</string>
+    <string name="value_label_default_result">...</string>
+    <string name="value_label_default_result">...</string>
+</resources>
