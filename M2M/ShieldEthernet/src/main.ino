@@ -1,6 +1,7 @@
 #include <SPI.h>
 #include <Ethernet.h>
 #include "Seeed_BME280.h"
+#include "../../../../../.platformio/packages/toolchain-atmelavr/avr/include/stdio.h"
 #include <Wire.h>
 #include <ChainableLED.h>
 
@@ -16,6 +17,7 @@ ChainableLED led(LED_PORT_A, LED_PORT_B, 1);
 
 String buffer;
 String color;
+const char *color_str;
 int r, g, b;
 char c;
 
@@ -61,11 +63,11 @@ void loop() {
                         color = "";
 
                         for(int i = 0; i < 6; i++)
-                            color += buffer.charAt(buffer.indexOf("led_control=") + 13 + i);
+                            color += buffer.charAt(buffer.indexOf("led_control=") + 15 + i);
 
-//                        r = int(String(color.charAt(0) + color.charAt(1), HEX));
-//                        g = int(String(color.charAt(2) + color.charAt(3), HEX));
-//                        b = int(String(color.charAt(4) + color.charAt(5), HEX));
+                        color_str =color.c_str();
+                        sscanf(color_str, "%02x%02x%02x", &r, &g, &b);
+
                         led.setColorRGB(0, r, g, b);
                     }
 
