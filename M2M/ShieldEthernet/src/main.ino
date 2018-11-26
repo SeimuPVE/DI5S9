@@ -15,6 +15,8 @@ BME280 bme280;
 ChainableLED led(LED_PORT_A, LED_PORT_B, 1);
 
 String buffer;
+String color;
+int r, g, b;
 char c;
 
 
@@ -55,13 +57,17 @@ void loop() {
                 // If you've gotten to the end of the line (received a newline character) and the line is blank, the http request has ended, so you can send a reply.
                 if(c == '\n' && currentLineIsBlank) {
                     // Print the data sent by the web browser.
-                    if(buffer.indexOf("led_control=") != -1)
-                        if(buffer.charAt(buffer.indexOf("led_control=") + 12) == 'r')
-                            led.setColorRGB(0, 255, 0, 0);
-                        else if(buffer.charAt(buffer.indexOf("led_control=") + 12) == 'g')
-                            led.setColorRGB(0, 0, 255, 0);
-                        else if(buffer.charAt(buffer.indexOf("led_control=") + 12) == 'b')
-                            led.setColorRGB(0, 0, 0, 255);
+                    if(buffer.indexOf("led_control=") != -1) {
+                        color = "";
+
+                        for(int i = 0; i < 6; i++)
+                            color += buffer.charAt(buffer.indexOf("led_control=") + 13 + i);
+
+//                        r = int(String(color.charAt(0) + color.charAt(1), HEX));
+//                        g = int(String(color.charAt(2) + color.charAt(3), HEX));
+//                        b = int(String(color.charAt(4) + color.charAt(5), HEX));
+                        led.setColorRGB(0, r, g, b);
+                    }
 
                     client.println("HTTP/1.1 200 OK");
                     client.println("Content-Type: text/html");
@@ -69,7 +75,7 @@ void loop() {
                     client.println();
                     client.println("<!DOCTYPE HTML>");
                     client.println("<meta charset=\"UTF-8\"> ");
-                    client.println("<meta http-equiv=\"refresh\" content=\"5; URL=http://192.168.0.1/\">");
+                    client.println("<meta http-equiv=\"refresh\" content=\"10; URL=http://192.168.0.1/\">");
                     client.println("<html>");
 
                     // Output the value of each analog input pin.
@@ -99,9 +105,8 @@ void loop() {
                     // Add three buttons to control the output led.
                     client.println("<section>");
                     client.println("<form method=\"GET\">");
-                    client.println("<input type=\"submit\" name=\"led_control\" value=\"red\">");
-                    client.println("<input type=\"submit\" name=\"led_control\" value=\"green\">");
-                    client.println("<input type=\"submit\" name=\"led_control\" value=\"blue\">");
+                    client.println("<input type=\"color\" name=\"led_control\" class=\"form-control\">");
+                    client.println("<input type=\"submit\">");
                     client.println("</form>");
                     client.println("</section>");
                     client.println("</html>");
