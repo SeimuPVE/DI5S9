@@ -1,10 +1,4 @@
 <resources>
-<<<<<<< HEAD
-    <string name="app_name">PStoch</string>
-    <string name="label_1">Nombre moyen d\'arrivées (sur 1h) (lambda) :</string>
-    <string name="label_2">Temps moyen de service (par heures) (mu) :</string>
-    <string name="label_3">Nombre de serveurs :</string>
-=======
     <string name="app_name">PStochCalculator</string>
     <string name="value_label_top_1">Nombre moyen d\'arrivées (sur 1h)(lambda) :</string>
     <string name="value_label_top_2">Temps moyen de service (par heures) (mu) :</string>
@@ -19,5 +13,4 @@
     <string name="value_label_down_4">Durée moyenne d\'attente dans le système (W) :</string>
     <string name="value_label_down_5">Durée moyenne d\'attente dans la file (Wq) :</string>
     <string name="value_label_default_result">...</string>
->>>>>>> a9c327172739ce400b0ece4deed51febb61abff2
 </resources>
