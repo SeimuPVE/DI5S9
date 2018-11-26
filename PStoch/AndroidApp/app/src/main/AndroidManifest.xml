@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.polytech.seimu.pstoch">
+=======
+    package="com.polytech.seimu.pstochcalculator">
+>>>>>>> a9c327172739ce400b0ece4deed51febb61abff2
 
     <application
         android:allowBackup="true"
