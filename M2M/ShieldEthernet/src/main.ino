@@ -130,6 +130,6 @@ void loop() {
 
         // Close the connection.
         client.stop();
-        Serial.println("client disconnected");
+        Serial.println("Client disconnected");
     }
 }
