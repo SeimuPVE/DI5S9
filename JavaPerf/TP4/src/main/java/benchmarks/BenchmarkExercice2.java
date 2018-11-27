@@ -8,7 +8,7 @@ import org.openjdk.jmh.infra.Blackhole;
 
 public class BenchmarkExercice2 {
     @Benchmark @Fork(1)
-    public void testExercice3a(Blackhole blackhole) {
+    public void testExercice2(Blackhole blackhole) {
         blackhole.consume(Exercice2.fibonacci(43));
     }
 }
