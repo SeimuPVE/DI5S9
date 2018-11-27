@@ -1,6 +1,6 @@
 package org.polytechtours.performance.tp.fourmispeintre;
 
-import java.awt.Color;
+import java.awt.Color; // TODO : cost 80% of the memory.
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

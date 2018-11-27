@@ -285,16 +285,17 @@ public class CPainting extends Canvas implements MouseListener {
         }
     }
 
+    // TODO : optimize this method.
     /**
      * Titre : void colorer_case(int x, int y, Color c).
      * Description : Cette fonction va colorer le pixel correspondant et mettre a jour le tabmleau des couleurs.
      */
     public void setCouleur(int x, int y, Color c, int pTaille) {
-        int i, j, k, l, m, n;
+        int i, j, k, l, m, n, convForSize = 0;
         float R, G, B;
         Color lColor;
 
-        synchronized (mMutexCouleurs) {
+        synchronized(mMutexCouleurs) {
             if (!mSuspendu) {
                 // On colorie la case sur laquelle se trouve la fourmi.
                 mGraphics.setColor(c);
@@ -302,101 +303,54 @@ public class CPainting extends Canvas implements MouseListener {
             }
 
             mCouleurs[x][y] = c;
+            // TODO : doesn't work for pTaille = 2 or 3.
+//            pTaille = 2;
 
             // On fait diffuser la couleur :
             switch (pTaille) {
                 case 0:
                     // On ne fait rien = pas de diffusion.
+                    convForSize = 0;
                     break;
                 case 1:
                     // Produit de convolution discrete sur 9 cases.
-                    for (i = 0; i < 3; i++) {
-                        for (j = 0; j < 3; j++) {
-                            R = G = B = 0f;
-
-                            for (k = 0; k < 3; k++) {
-                                for (l = 0; l < 3; l++) {
-                                    m = (x + i + k - 2 + mDimension.width) % mDimension.width;
-                                    n = (y + j + l - 2 + mDimension.height) % mDimension.height;
-                                    R += CPainting.mMatriceConv9[k][l] * mCouleurs[m][n].getRed();
-                                    G += CPainting.mMatriceConv9[k][l] * mCouleurs[m][n].getGreen();
-                                    B += CPainting.mMatriceConv9[k][l] * mCouleurs[m][n].getBlue();
-                                }
-                            }
-
-                            lColor = new Color((int) R, (int) G, (int) B);
-
-                            mGraphics.setColor(lColor);
-
-                            m = (x + i - 1 + mDimension.width) % mDimension.width;
-                            n = (y + j - 1 + mDimension.height) % mDimension.height;
-                            mCouleurs[m][n] = lColor;
-
-                            if (!mSuspendu)
-                                mGraphics.fillRect(m, n, 1, 1);
-
-                        }
-                    }
-
+                    convForSize = 3;
                     break;
                 case 2:
                     // Produit de convolution discrete sur 25 cases.
-                    for (i = 0; i < 5; i++) {
-                        for (j = 0; j < 5; j++) {
-                            R = G = B = 0f;
-
-                            for (k = 0; k < 5; k++) {
-                                for (l = 0; l < 5; l++) {
-                                    m = (x + i + k - 4 + mDimension.width) % mDimension.width;
-                                    n = (y + j + l - 4 + mDimension.height) % mDimension.height;
-                                    R += CPainting.mMatriceConv25[k][l] * mCouleurs[m][n].getRed();
-                                    G += CPainting.mMatriceConv25[k][l] * mCouleurs[m][n].getGreen();
-                                    B += CPainting.mMatriceConv25[k][l] * mCouleurs[m][n].getBlue();
-                                }
-                            }
-
-                            lColor = new Color((int) R, (int) G, (int) B);
-                            mGraphics.setColor(lColor);
-                            m = (x + i - 2 + mDimension.width) % mDimension.width;
-                            n = (y + j - 2 + mDimension.height) % mDimension.height;
-
-                            mCouleurs[m][n] = lColor;
-
-                            if (!mSuspendu)
-                                mGraphics.fillRect(m, n, 1, 1);
-                        }
-                    }
-
+                    convForSize = 5;
                     break;
                 case 3:
                     // Produit de convolution discrete sur 49 cases.
-                    for (i = 0; i < 7; i++) {
-                        for (j = 0; j < 7; j++) {
-                            R = G = B = 0f;
+                    convForSize = 7;
+                    break;
+            }
 
-                            for (k = 0; k < 7; k++) {
-                                for (l = 0; l < 7; l++) {
-                                    m = (x + i + k - 6 + mDimension.width) % mDimension.width;
-                                    n = (y + j + l - 6 + mDimension.height) % mDimension.height;
-                                    R += CPainting.mMatriceConv49[k][l] * mCouleurs[m][n].getRed();
-                                    G += CPainting.mMatriceConv49[k][l] * mCouleurs[m][n].getGreen();
-                                    B += CPainting.mMatriceConv49[k][l] * mCouleurs[m][n].getBlue();
-                                }
-                            }
+            for (i = 0; i < 5; i++) {
+                for (j = 0; j < convForSize; j++) {
+                    R = G = B = 0f;
 
-                            lColor = new Color((int) R, (int) G, (int) B);
-                            mGraphics.setColor(lColor);
-                            m = (x + i - 3 + mDimension.width) % mDimension.width;
-                            n = (y + j - 3 + mDimension.height) % mDimension.height;
-
-                            mCouleurs[m][n] = lColor;
-
-                            if (!mSuspendu)
-                                mGraphics.fillRect(m, n, 1, 1);
+                    for (k = 0; k < convForSize; k++) {
+                        for (l = 0; l < convForSize; l++) {
+                            m = (x + i + k - (2 * pTaille) + mDimension.width) % mDimension.width;
+                            n = (y + j + l - (2 * pTaille) + mDimension.height) % mDimension.height;
+                            R += CPainting.mMatriceConv9[k][l] * mCouleurs[m][n].getRed();
+                            G += CPainting.mMatriceConv9[k][l] * mCouleurs[m][n].getGreen();
+                            B += CPainting.mMatriceConv9[k][l] * mCouleurs[m][n].getBlue();
                         }
                     }
 
-                    break;
+                    lColor = new Color((int) R, (int) G, (int) B);
+
+                    mGraphics.setColor(lColor);
+
+                    m = (x + i - pTaille + mDimension.width) % mDimension.width;
+                    n = (y + j - pTaille + mDimension.height) % mDimension.height;
+                    mCouleurs[m][n] = lColor;
+
+                    if (!mSuspendu)
+                        mGraphics.fillRect(m, n, 1, 1);
+                }
             }
         }
     }
