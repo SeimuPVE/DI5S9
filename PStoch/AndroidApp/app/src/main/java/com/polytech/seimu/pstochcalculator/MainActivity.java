@@ -3,10 +3,7 @@ package com.polytech.seimu.pstochcalculator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -143,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
 
     protected void checkLambdaAndMu() {
         final TextView label_error = findViewById(R.id.label_error);
-        final TextView label_result_L = findViewById(R.id.label_result_L);
         final EditText input_lambda = findViewById(R.id.input_lambda);
         final EditText input_mu = findViewById(R.id.input_mu);
         String lambdaStr, muStr;
@@ -179,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(lambda/mu >= 1)
-            label_error.setText("Error : lamdba/mu >= 1, it's blocking.");
+            label_error.setText(R.string.blocking_error);
         else {
             label_error.setText("");
             calculateAndPrintResults();

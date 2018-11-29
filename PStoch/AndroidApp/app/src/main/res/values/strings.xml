@@ -13,4 +13,5 @@
     <string name="value_label_down_4">Durée moyenne d\'attente dans le système (W) :</string>
     <string name="value_label_down_5">Durée moyenne d\'attente dans la file (Wq) :</string>
     <string name="value_label_default_result">...</string>
+    <string name="blocking_error"><![CDATA[Error : lamdba/mu >= 1, it\'s blocking.]]></string>
 </resources>
