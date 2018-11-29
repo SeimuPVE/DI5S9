@@ -3,6 +3,7 @@ package com.polytech.seimu.pstochcalculator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void checkLambdaAndMu() {
-        // TODO : manage "."
+        final TextView label_error = findViewById(R.id.label_error);
         final TextView label_result_L = findViewById(R.id.label_result_L);
         final EditText input_lambda = findViewById(R.id.input_lambda);
         final EditText input_mu = findViewById(R.id.input_mu);
@@ -152,32 +153,36 @@ public class MainActivity extends AppCompatActivity {
         muStr = input_mu.getText().toString();
 
         if(lambdaStr.equals("")) {
-            input_lambda.setText("0");
-            input_lambda.setSelection(input_lambda.getText().length());
             lambda = 0;
         }
         else {
+            if(lambdaStr.charAt(0) == '.')
+                lambdaStr = '0' + lambdaStr;
+
             if(lambdaStr.charAt(lambdaStr.length() - 1) == '.')
                 lambdaStr += '0';
 
-            lambda = Integer.parseInt(lambdaStr);
+            lambda = Double.parseDouble(lambdaStr);
         }
 
         if(muStr.equals("")) {
-            input_mu.setText("0");
-            input_mu.setSelection(input_mu.getText().length());
             mu = 0;
         }
         else {
+            if(muStr.charAt(0) == '.')
+                muStr = '0' + muStr;
+
             if(muStr.charAt(muStr.length() - 1) == '.')
                 muStr += '0';
 
-            mu = Integer.parseInt(muStr);
+            mu = Double.parseDouble(muStr);
         }
 
         if(lambda/mu >= 1)
-            label_result_L.setText("Error."); // TODO : manage the error.
-        else
+            label_error.setText("Error : lamdba/mu >= 1, it's blocking.");
+        else {
+            label_error.setText("");
             calculateAndPrintResults();
+        }
     }
 }
