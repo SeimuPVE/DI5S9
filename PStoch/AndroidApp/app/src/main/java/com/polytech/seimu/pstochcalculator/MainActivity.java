@@ -117,27 +117,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    protected void calculateAndPrintResults() {
-        // Prepare results.
-        final TextView label_result_L = findViewById(R.id.label_result_L);
-        final TextView label_result_Lq = findViewById(R.id.label_result_Lq);
-        final TextView label_result_W = findViewById(R.id.label_result_W);
-        final TextView label_result_Wq = findViewById(R.id.label_result_Wq);
-
-        // Prepare listeners.
-        final EditText input_lambda = findViewById(R.id.input_lambda);
-        final EditText input_mu = findViewById(R.id.input_mu);
-        final EditText input_nb_server = findViewById(R.id.input_nb_server);
-        final EditText input_max_clients = findViewById(R.id.input_max_clients);
-        final RadioGroup radio_group_clients = findViewById(R.id.radio_group_clients);
-        final RadioButton input_radio_finite = findViewById(R.id.input_radio_finite);
-        final RadioButton input_radio_infinite = findViewById(R.id.input_radio_infinite);
-
-        // TODO : calculate result and print it.
-//        if(String.valueOf(input_lambda.getText()).equals(""))
-//            label_result_L.setText(input_lambda.getHint());
-    }
-
     protected void checkLambdaAndMu() {
         final TextView label_error = findViewById(R.id.label_error);
         final EditText input_lambda = findViewById(R.id.input_lambda);
@@ -174,11 +153,121 @@ public class MainActivity extends AppCompatActivity {
             mu = Double.parseDouble(muStr);
         }
 
-        if(lambda/mu >= 1)
+        if(lambda/mu >= 1) {
+            final TextView label_result_L = findViewById(R.id.label_result_L);
+            final TextView label_result_Lq = findViewById(R.id.label_result_Lq);
+            final TextView label_result_W = findViewById(R.id.label_result_W);
+            final TextView label_result_Wq = findViewById(R.id.label_result_Wq);
+
+            label_result_L.setText(String.valueOf("---"));
+            label_result_Lq.setText(String.valueOf("---"));
+            label_result_W.setText(String.valueOf("---"));
+            label_result_Wq.setText(String.valueOf("---"));
+
             label_error.setText(R.string.blocking_error);
+        }
         else {
             label_error.setText("");
             calculateAndPrintResults();
+        }
+    }
+
+    protected double getLambda() {
+        final EditText input_lambda = findViewById(R.id.input_lambda);
+        double lambda;
+        String lambdaStr = input_lambda.getText().toString();
+
+        if(lambdaStr.equals(""))
+            lambda = 0;
+        else {
+            if(lambdaStr.charAt(0) == '.')
+                lambdaStr = '0' + lambdaStr;
+
+            if(lambdaStr.charAt(lambdaStr.length() - 1) == '.')
+                lambdaStr += '0';
+
+            lambda = Double.parseDouble(lambdaStr);
+        }
+
+        return lambda;
+    }
+
+    protected double getMu() {
+        final EditText input_mu = findViewById(R.id.input_mu);
+        double mu;
+        String muStr = input_mu.getText().toString();
+
+        if(muStr.equals(""))
+            mu = 0;
+        else {
+            if(muStr.charAt(0) == '.')
+                muStr = '0' + muStr;
+
+            if(muStr.charAt(muStr.length() - 1) == '.')
+                muStr += '0';
+
+            mu = Double.parseDouble(muStr);
+        }
+
+        return mu;
+    }
+
+    protected int getServers() {
+        final EditText input_nb_server = findViewById(R.id.input_nb_server);
+        int servers;
+        String serversStr = input_nb_server.getText().toString();
+
+        if(serversStr.equals(""))
+            servers = 1;
+        else
+            servers = Integer.parseInt(serversStr);
+
+        return servers;
+    }
+
+    protected boolean infiniteClient() {
+        final RadioButton input_radio_infinite = findViewById(R.id.input_radio_infinite);
+
+        return input_radio_infinite.isChecked();
+    }
+
+    protected int getMaxClient() {
+        final EditText input_max_clients = findViewById(R.id.input_max_clients);
+        int maxClients;
+        String maxClientsStr = input_max_clients.getText().toString();
+
+        if(maxClientsStr.equals(""))
+            maxClients = 1;
+        else
+            maxClients = Integer.parseInt(maxClientsStr);
+
+        return maxClients;
+    }
+
+    protected void calculateAndPrintResults() {
+        // Prepare results.
+        final TextView label_result_L = findViewById(R.id.label_result_L);
+        final TextView label_result_Lq = findViewById(R.id.label_result_Lq);
+        final TextView label_result_W = findViewById(R.id.label_result_W);
+        final TextView label_result_Wq = findViewById(R.id.label_result_Wq);
+
+        queueTemplate queue;
+
+        try {
+            if(getServers() != 1)
+                queue = new MMS(getLambda(), getMu(), getServers());
+            else if(!infiniteClient())
+                queue = new MM1K(getLambda(), getMu(), getMaxClient());
+            else
+                queue = new MM1(getLambda(), getMu());
+
+            label_result_L.setText(String.valueOf(queue.getL()));
+            label_result_Lq.setText(String.valueOf(queue.getLq()));
+            label_result_W.setText(String.valueOf(queue.getW()));
+            label_result_Wq.setText(String.valueOf(queue.getWq()));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
