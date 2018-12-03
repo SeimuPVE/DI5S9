@@ -1,22 +1,2 @@
-# L'Académie de la Bière
-
-## Analyse de Porter
-
-### Explication des 5 piliers de Porter
-
-### Analyse du l'Académie de la Bière
-
-#### Menace des nouveaux entrants
-
-#### Pouvoir de négociation des fournisseurs
-
-#### Menace des produits de substitution
-Autres alcools
-
-#### Pouvoir de négociation des clients
-Aucune négociation des prix
-Mais peuvent aller dans un autre bar
-Ou prendre un produit de substitution (autre alcool que de la bière)
-Pas de prix d'entrée mais d'autres boites avec qualité suppérieure en terme de piste de dance
-
-#### Concurrence directe
+Si de nouveaux acteurs viennent concurrencer le marché, alors les résultats sont directement influencés. Les clients peuvent aller voir ailleurs, ils ont plus de choix. Il faut fournir plus d'efforts ou d'originalité pour se démarquer.
+Pour le cas de l'académie de la bière, l'arrivée sur le marché est un peu compliquée. Tout d'abord les bars doivent avoir une license, c'est un premier frein. Ensuite il faut un local, et généralement la localisation de ce dernier est important. Cela va en défaveur..
