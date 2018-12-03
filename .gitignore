@@ -1,8 +1,8 @@
 # Android
 .idea
 gen
-gradle
-*gradle*
+#gradle
+#*gradle*
 local.properties
 proguard-rules.pro
 build
