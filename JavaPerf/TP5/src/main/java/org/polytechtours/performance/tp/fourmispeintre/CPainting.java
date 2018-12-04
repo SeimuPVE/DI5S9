@@ -290,9 +290,12 @@ public class CPainting extends Canvas implements MouseListener {
      * Description : Cette fonction va colorer le pixel correspondant et mettre a jour le tableau des couleurs.
      */
     public void setCouleur(int x, int y, Color c, int pTaille) {
-        int i, j, k, l, m, n, convForSize = 0;
+        if(pTaille == 0)
+            return;
+
+        int i, j, k, l, m, n, convForSize = pTaille * 2 + 1;
         float R, G, B;
-        float[][] matriceConv;
+        float[][] matriceConv = new float[convForSize][convForSize];
         Color lColor;
 
         synchronized(mMutexCouleurs) {
@@ -305,9 +308,6 @@ public class CPainting extends Canvas implements MouseListener {
             mCouleurs[x][y] = c;
 
             // On fait diffuser la couleur :
-            convForSize = pTaille * 2 + 1;
-            matriceConv = new float[convForSize][convForSize];
-
             switch(pTaille) {
                 case 0:
                     break;
