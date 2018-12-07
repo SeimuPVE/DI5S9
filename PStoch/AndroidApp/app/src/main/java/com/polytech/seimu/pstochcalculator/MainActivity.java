@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             mu = Double.parseDouble(muStr);
         }
 
-        if(lambda/mu >= 1) {
+        if(lambda/(mu * getServers()) >= 1) {
             final TextView label_result_L = findViewById(R.id.label_result_L);
             final TextView label_result_Lq = findViewById(R.id.label_result_Lq);
             final TextView label_result_W = findViewById(R.id.label_result_W);
