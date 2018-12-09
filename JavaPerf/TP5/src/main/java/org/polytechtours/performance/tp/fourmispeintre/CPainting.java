@@ -285,14 +285,17 @@ public class CPainting extends Canvas implements MouseListener {
         }
     }
 
-    // TODO : optimize this method.
     /**
      * Titre : void colorer_case(int x, int y, Color c).
-     * Description : Cette fonction va colorer le pixel correspondant et mettre a jour le tabmleau des couleurs.
+     * Description : Cette fonction va colorer le pixel correspondant et mettre a jour le tableau des couleurs.
      */
     public void setCouleur(int x, int y, Color c, int pTaille) {
-        int i, j, k, l, m, n, convForSize = 0;
+        if(pTaille == 0)
+            return;
+
+        int i, j, k, l, m, n, convForSize = pTaille * 2 + 1;
         float R, G, B;
+        float[][] matriceConv = new float[convForSize][convForSize];
         Color lColor;
 
         synchronized(mMutexCouleurs) {
@@ -303,30 +306,23 @@ public class CPainting extends Canvas implements MouseListener {
             }
 
             mCouleurs[x][y] = c;
-            // TODO : doesn't work for pTaille = 2 or 3.
-//            pTaille = 2;
 
             // On fait diffuser la couleur :
-            switch (pTaille) {
+            switch(pTaille) {
                 case 0:
-                    // On ne fait rien = pas de diffusion.
-                    convForSize = 0;
                     break;
                 case 1:
-                    // Produit de convolution discrete sur 9 cases.
-                    convForSize = 3;
+                    matriceConv = mMatriceConv9;
                     break;
                 case 2:
-                    // Produit de convolution discrete sur 25 cases.
-                    convForSize = 5;
+                    matriceConv = mMatriceConv25;
                     break;
                 case 3:
-                    // Produit de convolution discrete sur 49 cases.
-                    convForSize = 7;
+                    matriceConv = mMatriceConv49;
                     break;
             }
 
-            for (i = 0; i < 5; i++) {
+            for (i = 0; i < convForSize; i++) {
                 for (j = 0; j < convForSize; j++) {
                     R = G = B = 0f;
 
@@ -334,9 +330,9 @@ public class CPainting extends Canvas implements MouseListener {
                         for (l = 0; l < convForSize; l++) {
                             m = (x + i + k - (2 * pTaille) + mDimension.width) % mDimension.width;
                             n = (y + j + l - (2 * pTaille) + mDimension.height) % mDimension.height;
-                            R += CPainting.mMatriceConv9[k][l] * mCouleurs[m][n].getRed();
-                            G += CPainting.mMatriceConv9[k][l] * mCouleurs[m][n].getGreen();
-                            B += CPainting.mMatriceConv9[k][l] * mCouleurs[m][n].getBlue();
+                            R += matriceConv[k][l] * mCouleurs[m][n].getRed();
+                            G += matriceConv[k][l] * mCouleurs[m][n].getGreen();
+                            B += matriceConv[k][l] * mCouleurs[m][n].getBlue();
                         }
                     }
 
