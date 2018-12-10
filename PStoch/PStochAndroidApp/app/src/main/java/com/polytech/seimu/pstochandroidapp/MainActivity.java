@@ -63,12 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!String.valueOf(input_nb_server.getText()).equals("") && Integer.valueOf(String.valueOf(input_nb_server.getText())) == 0) {
-                    input_nb_server.setText("");
-                    input_nb_server.setSelection(input_nb_server.getText().length());
-                }
-
-                calculateAndPrintResults();
+                checkLambdaAndMu();
             }
 
             @Override
@@ -82,12 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!String.valueOf(input_max_clients.getText()).equals("") && Integer.valueOf(String.valueOf(input_max_clients.getText())) == 0) {
-                    input_max_clients.setText("");
-                    input_max_clients.setSelection(input_max_clients.getText().length());
-                }
-
-                calculateAndPrintResults();
+                checkLambdaAndMu();
             }
 
             @Override
@@ -164,7 +154,10 @@ public class MainActivity extends AppCompatActivity {
             label_result_W.setText(String.valueOf("---"));
             label_result_Wq.setText(String.valueOf("---"));
 
-            label_error.setText(R.string.blocking_error);
+            if(getServers() == 1)
+                label_error.setText(R.string.blocking_error);
+            else
+                label_error.setText(R.string.blocking_error_with_s);
         }
         else {
             label_error.setText("");
