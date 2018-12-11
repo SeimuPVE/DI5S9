@@ -1,12 +1,12 @@
 import evenements.Evenement;
-import javafx.util.Pair;
+import util.Pair;
 
 import java.util.*;
 
 
 public class Echeancier
 {
-    private List <Pair <Evenement, Date>> evenements;
+    private List <Pair> evenements;
 
 
     public Echeancier()
@@ -16,6 +16,6 @@ public class Echeancier
 
     public void ajouterEvenement(Evenement evenement, Date date)
     {
-        evenements.add(new Pair <> (evenement, date));
+        evenements.add(new Pair(evenement, date));
     }
 }
