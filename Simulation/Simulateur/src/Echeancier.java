@@ -1,23 +1,21 @@
-import java.util.ArrayList;
+import evenements.Evenement;
+import javafx.util.Pair;
+
+import java.util.*;
 
 
 public class Echeancier
 {
-    private List <Evenement> evenements;
+    private List <Pair <Evenement, Date>> evenements;
 
 
     public Echeancier()
     {
-        evenements = new ArrayList <Evenement> ();
+        evenements = new ArrayList <> ();
     }
 
-    public void addEvenement(Evenement evenement)
+    public void ajouterEvenement(Evenement evenement, Date date)
     {
-        evenements.add(evenement);
-    }
-
-    public List <Evenement> getEvenements()
-    {
-        return evenements;
+        evenements.add(new Pair <> (evenement, date));
     }
 }
