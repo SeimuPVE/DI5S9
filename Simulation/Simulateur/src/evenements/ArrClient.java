@@ -15,16 +15,15 @@ public class ArrClient extends Evenement implements Runnable {
     }
 
 
-
     @Override
     public void run() {
         // Si la simulation n'est pas fini
-        while(Simulateur.getTempsActuel()!=Simulateur.getT()){
+        while (Simulateur.getTempsActuel() != Simulateur.getT()) {
             // arrivee client
             Clients.ajouterClient(new Client(Simulateur.getTempsActuel()));
 
             // inter arrivee
-            long interArrivee = (long)LoiSimulateur.loi_exp(0.4);
+            long interArrivee = (long) LoiSimulateur.loi_exp(0.4);
 
             // creer AccFileTelephonique
             Echeancier.ajouterEvenement(new AccFileTelephonique(), Simulateur.getTempsActuel());
