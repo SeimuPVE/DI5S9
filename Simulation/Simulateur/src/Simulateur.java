@@ -23,7 +23,7 @@ public class Simulateur {
         TempsMax = 0;
 
         echeancier = new Echeancier();
-        echeancier.add(new Debut());
+        echeancier.ajouterEvenement(new Debut(), 0.0);
     }
 
     public void run() {
