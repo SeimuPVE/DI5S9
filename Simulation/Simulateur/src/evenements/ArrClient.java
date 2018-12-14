@@ -1,6 +1,5 @@
 package evenements;
 
-
 import clients.Client;
 import clients.Clients;
 import util.Echeancier;
@@ -9,25 +8,18 @@ import util.Simulateur;
 
 
 public class ArrClient extends Evenement implements Runnable {
-
-    public ArrClient() {
-
-    }
-
-
     @Override
     public void run() {
-        // Si la simulation n'est pas fini
+        // Si la simulation n'est pas finie.
         while (Simulateur.getTempsActuel() != Simulateur.getT()) {
-            // arrivee client
+            // Arrivee client.
             Clients.ajouterClient(new Client(Simulateur.getTempsActuel()));
 
-            // inter arrivee
+            // Inter arrivee.
             long interArrivee = (long) LoiSimulateur.loi_exp(0.4);
 
-            // creer AccFileTelephonique
+            // Creer AccFileTelephonique.
             Echeancier.ajouterEvenement(new AccFileTelephonique(), Simulateur.getTempsActuel());
-
         }
     }
 }
