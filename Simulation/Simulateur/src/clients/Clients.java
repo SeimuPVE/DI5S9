@@ -13,6 +13,11 @@ public class Clients
         clients = new ArrayList <> ();
     }
 
+    public static void ajouterClient(Client client)
+    {
+        clients.add(client);
+    }
+
     public static List <Client> getClients()
     {
         return clients;
