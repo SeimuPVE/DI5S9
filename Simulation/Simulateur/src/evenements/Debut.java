@@ -2,6 +2,7 @@ package evenements;
 
 
 import util.Echeancier;
+import util.LoiSimulateur;
 import util.Simulateur;
 
 public class Debut extends Evenement {
@@ -16,7 +17,9 @@ public class Debut extends Evenement {
 
         Simulateur.setTempsDebut(System.currentTimeMillis());
 
-        Evenement arrClient = new ArrClient();
+        double interArrivee = LoiSimulateur.loi_exp(0.4);
+
+        Evenement arrClient = new ArrClient((long) interArrivee + Simulateur.getTempsActuel());
         Echeancier.ajouterEvenement(arrClient, Simulateur.getTempsActuel());
         arrClient.run();
     }
