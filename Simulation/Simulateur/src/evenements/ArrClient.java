@@ -1,7 +1,12 @@
 package evenements;
 
 
-import java.util.concurrent.ThreadLocalRandom;
+import clients.Client;
+import clients.Clients;
+import util.Echeancier;
+import util.LoiSimulateur;
+import util.Simulateur;
+
 
 public class ArrClient extends Evenement implements Runnable {
 
@@ -9,26 +14,20 @@ public class ArrClient extends Evenement implements Runnable {
 
     }
 
-    private double loi_exp(double lambda) throws Exception {
-        double p;
-        double temp;
-        if (lambda != 0)
-            temp = 1 / lambda;
-        else
-            throw new Exception("Ne peut pas deviser par 0");
-        double randres;
-        while(true)
-        {
-            p = ThreadLocalRandom.current().nextDouble();
-            if (p < lambda)
-                break;
-        }
-        randres = -temp * Math.log(temp * p);
-        return randres;
-    }
 
     @Override
     public void run() {
+        // Si la simulation n'est pas fini
+        while (Simulateur.getTempsActuel() != Simulateur.getT()) {
+            // arrivee client
+            Clients.ajouterClient(new Client(Simulateur.getTempsActuel()));
 
+            // inter arrivee
+            long interArrivee = (long) LoiSimulateur.loi_exp(0.4);
+
+            // creer AccFileTelephonique
+            Echeancier.ajouterEvenement(new AccFileTelephonique(), Simulateur.getTempsActuel());
+
+        }
     }
 }
