@@ -1,6 +1,8 @@
 package evenements;
 
 
+import util.Simulateur;
+
 public class FinAppel extends Evenement {
     /*
      * B <- 0
