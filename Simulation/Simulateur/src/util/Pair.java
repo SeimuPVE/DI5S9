@@ -2,28 +2,22 @@ package util;
 
 import evenements.Evenement;
 
-import java.util.Date;
 
-
-public class Pair
-{
+public class Pair {
     private Evenement evenement;
     private float date;
 
 
-    public Pair(Evenement evenement, float date)
-    {
+    public Pair(Evenement evenement, float date) {
         this.evenement = evenement;
         this.date = date;
     }
 
-    public Evenement getEvenement()
-    {
+    public Evenement getEvenement() {
         return evenement;
     }
 
-    public float getDate()
-    {
+    public float getDate() {
         return date;
     }
 }

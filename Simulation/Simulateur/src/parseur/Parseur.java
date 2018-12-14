@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Parseur
-{
+public class Parseur {
     List <Float> dateArrAppels;
     List <Float> dureeAppels;
 
-    public Parseur(String fileName) throws IOException
-    {
+    public Parseur(String fileName) throws IOException {
         dateArrAppels = new ArrayList <> ();
         dureeAppels = new ArrayList <> ();
 
@@ -20,8 +18,7 @@ public class Parseur
 
         String line;
 
-        while ((line = reader.readLine()) != null)
-        {
+        while ((line = reader.readLine()) != null) {
             String [] donnees = line.split(" ");
 
             dateArrAppels.add(Float.parseFloat(donnees[0]));
@@ -31,13 +28,11 @@ public class Parseur
         reader.close();
     }
 
-    public List <Float> getDateArrAppels()
-    {
+    public List <Float> getDateArrAppels() {
         return dateArrAppels;
     }
 
-    public List <Float> getDureeAppels()
-    {
+    public List <Float> getDureeAppels() {
         return dureeAppels;
     }
 }
