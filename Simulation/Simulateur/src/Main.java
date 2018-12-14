@@ -1,5 +1,7 @@
+import util.Simulateur;
+
 /*
- * Echeancier : couple événements/heures trié par heures
+ * util.Echeancier : couple événements/heures trié par heures
  *
  * Evenement : classe abstraite
  * Chaque événement a sa classe
