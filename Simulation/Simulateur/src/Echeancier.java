@@ -13,7 +13,7 @@ public class Echeancier {
         evenements = new ArrayList <> ();
     }
 
-    public void ajouterEvenement(Evenement evenement, Date date) {
+    public void ajouterEvenement(Evenement evenement, float date) {
         evenements.add(new Pair(evenement, date));
     }
 

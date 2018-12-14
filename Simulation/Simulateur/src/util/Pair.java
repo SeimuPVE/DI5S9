@@ -7,10 +7,10 @@ import java.util.Date;
 public class Pair
 {
     private Evenement evenement;
-    private Date date;
+    private float date;
 
 
-    public Pair(Evenement evenement, Date date)
+    public Pair(Evenement evenement, float date)
     {
         this.evenement = evenement;
         this.date = date;
@@ -21,7 +21,7 @@ public class Pair
         return evenement;
     }
 
-    public Date getDate()
+    public float getDate()
     {
         return date;
     }
