@@ -4,7 +4,6 @@ import evenements.Debut;
 
 
 public class Simulateur {
-    Echeancier echeancier;
 
     // Variables utilitaires.
     private static boolean B; // Vaut vrai quand le téléconseiller est occupé avec un clients et faux si c’est libre.
@@ -22,22 +21,12 @@ public class Simulateur {
     }
 
     public Simulateur(double tempsDeSimulation) {
-        B = false;
-        Q = 0;
-
         T = tempsDeSimulation;
-        N = 0;
-        AttGlb = 0;
-        TempsMax = 0;
-
-        tempsDebut = System.currentTimeMillis();
-
-        echeancier = new Echeancier();
-        echeancier.ajouterEvenement(new Debut(), 0);
+        Echeancier.ajouterEvenement(new Debut(), 0);
     }
 
     public void run() {
-        echeancier.get(0).run();
+        Echeancier.get(0).run();
     }
 
     /*
@@ -57,6 +46,14 @@ public class Simulateur {
 
     public static void setQ(int q) {
         Q = q;
+    }
+
+    public static long getTempsDebut() {
+        return tempsDebut;
+    }
+
+    public static void setTempsDebut(long currentTimeMillis) {
+        tempsDebut = currentTimeMillis;
     }
 
     public static double getT() {
