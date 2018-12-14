@@ -7,7 +7,7 @@ public class Simulateur {
     Echeancier echeancier;
 
     // Variables utilitaires.
-    private static boolean B; // Vaut vrai quand le téléconseiller est occupé avec un client et faux si c’est libre.
+    private static boolean B; // Vaut vrai quand le téléconseiller est occupé avec un clients et faux si c’est libre.
     private static int Q; // Nombre de clients en attente.
     private static long tempsDebut; // Temps de lancement de la simulation.
 
@@ -15,7 +15,7 @@ public class Simulateur {
     private static double T; // Temps de la simulation.
     private static int N; // Nombre d'arrivées
     private static double AttGlb; // Attente globale des clients.
-    private static double TempsMax; // Temps d'attente maximale d'un client.
+    private static double TempsMax; // Temps d'attente maximale d'un clients.
 
     public Simulateur() {
         // Rien à faire, ce constructeur sert juste à créer un simulateur pour appeler les variables statiques.
