@@ -9,6 +9,7 @@ public class Simulateur {
     // Variables utilitaires.
     private static boolean B; // Vaut vrai quand le téléconseiller est occupé avec un client et faux si c’est libre.
     private static int Q; // Nombre de clients en attente.
+    private static long tempsDebut; // Temps de lancement de la simulation.
 
     // Variables statistiques.
     private static double T; // Temps de la simulation.
@@ -29,8 +30,10 @@ public class Simulateur {
         AttGlb = 0;
         TempsMax = 0;
 
+        tempsDebut = System.currentTimeMillis();
+
         echeancier = new Echeancier();
-        echeancier.ajouterEvenement(new Debut(), 0.0);
+        echeancier.ajouterEvenement(new Debut(), 0);
     }
 
     public void run() {
@@ -86,5 +89,9 @@ public class Simulateur {
 
     public static void setTempsMax(double tempsMax) {
         TempsMax = tempsMax;
+    }
+
+    public static long getTempsActuel() {
+        return System.currentTimeMillis() - tempsDebut;
     }
 }
