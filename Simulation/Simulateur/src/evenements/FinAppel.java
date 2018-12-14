@@ -1,17 +1,18 @@
 package evenements;
 
 
+import util.Echeancier;
+import util.Simulateur;
+
 public class FinAppel extends Evenement {
-    /*
-     * B <- 0
-     * Si Q > 0 alors créer un événement AccèsAppel à l’heure HS
-     */
-    public FinAppel() {
-
-    }
-
     @Override
     public void run() {
+        Simulateur.setB(false);
 
+        if(Simulateur.getQ() > 0) {
+            Evenement accesAppel = new AccesAppel();
+            Echeancier.ajouterEvenement(accesAppel, Simulateur.getTempsActuel());
+            accesAppel.run();
+        }
     }
 }

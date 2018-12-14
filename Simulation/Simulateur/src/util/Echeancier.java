@@ -6,23 +6,13 @@ import java.util.*;
 
 // Couples évenement/heure triés par heures.
 public class Echeancier {
-    private List<Pair> evenements;
+    private static List<Pair> evenements = new ArrayList <> ();
 
-    public Echeancier() {
-        evenements = new ArrayList <> ();
-    }
-
-    public void ajouterEvenement(Evenement evenement, float date) {
+    public static void ajouterEvenement(Evenement evenement, float date) {
         evenements.add(new Pair(evenement, date));
     }
 
-    public Evenement get(int i) {
-        // TODO.
-        return new Evenement() {
-            @Override
-            public void run() {
-                System.out.println("TODO : delete it and return a real event.");
-            }
-        };
+    public static Evenement get(int i) {
+        return evenements.get(i).getEvenement();
     }
 }

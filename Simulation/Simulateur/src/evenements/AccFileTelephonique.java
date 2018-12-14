@@ -1,17 +1,18 @@
 package evenements;
 
 
+import util.Echeancier;
+import util.Simulateur;
+
 public class AccFileTelephonique extends Evenement {
-    /*
-     * Q <- Q + 1
-     * Si B = 0 alors créer un événement AccèsAppel à l’heure HS
-     */
-    public AccFileTelephonique() {
-
-    }
-
     @Override
     public void run() {
+        Simulateur.setQ(Simulateur.getQ() - 1);
 
+        if(!Simulateur.isB()) {
+            Evenement accesAppel = new AccesAppel();
+            Echeancier.ajouterEvenement(accesAppel, Simulateur.getTempsActuel());
+            accesAppel.run();
+        }
     }
 }
