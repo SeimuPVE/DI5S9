@@ -13,6 +13,8 @@ public class Simulateur {
     private static double AttGlb; // Attente globale des clients.
     private static double TempsMax; // Temps d'attente maximale d'un client.
 
+    private static long tempsDebut; // Temps de lancement de la simulation.
+
     public Simulateur(double tempsDeSimulation) {
         B = false;
         Q = 0;
@@ -22,8 +24,10 @@ public class Simulateur {
         AttGlb = 0;
         TempsMax = 0;
 
+        tempsDebut = System.currentTimeMillis();
+
         echeancier = new Echeancier();
-        echeancier.ajouterEvenement(new Debut(), 0.0);
+        echeancier.ajouterEvenement(new Debut(), 0);
     }
 
     public void run() {
@@ -80,4 +84,6 @@ public class Simulateur {
     public static void setTempsMax(double tempsMax) {
         TempsMax = tempsMax;
     }
+
+    public static long getTempsActuel() { return System.currentTimeMillis() - tempsDebut; }
 }
