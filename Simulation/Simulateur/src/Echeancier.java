@@ -1,4 +1,3 @@
-import evenements.Debut;
 import evenements.Evenement;
 import util.Pair;
 
@@ -15,10 +14,6 @@ public class Echeancier {
 
     public void ajouterEvenement(Evenement evenement, float date) {
         evenements.add(new Pair(evenement, date));
-    }
-
-    public void add(Debut debut) {
-        // TODO.
     }
 
     public Evenement get(int i) {
