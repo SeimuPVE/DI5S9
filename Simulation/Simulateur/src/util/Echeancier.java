@@ -15,4 +15,6 @@ public class Echeancier {
     public static Evenement get(int i) {
         return evenements.get(i).getEvenement();
     }
+
+    public static List<Pair> getEvenements(){return evenements;}
 }

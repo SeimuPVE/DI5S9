@@ -19,9 +19,9 @@ public class Debut extends Evenement {
 
         double interArrivee = LoiSimulateur.loi_exp(0.4);
 
-        Evenement arrClient = new ArrClient((long) interArrivee + Simulateur.getTempsActuel());
-        Echeancier.ajouterEvenement(arrClient, Simulateur.getTempsActuel());
-        Thread t1 = new Thread((ArrClient)arrClient);
-        t1.start();
+
+        Evenement arrClient = new ArrClient((long) interArrivee);
+        Echeancier.ajouterEvenement(arrClient, (long)interArrivee);
+//        arrClient.run();
     }
 }

@@ -1,12 +1,16 @@
 package util;
 
 import evenements.Debut;
+import evenements.Evenement;
+
+import java.util.Collections;
+import java.util.List;
 
 
 public class Simulateur {
 
     // Variables utilitaires.
-    private static boolean B; // Vaut vrai quand le téléconseiller est occupé avec un clients et faux si c’est libre.
+    private static boolean B = false; // Vaut vrai quand le téléconseiller est occupé avec un clients et faux si c’est libre.
     private static int Q; // Nombre de clients en attente.
     private static long tempsDebut; // Temps de lancement de la simulation.
 
@@ -26,7 +30,13 @@ public class Simulateur {
     }
 
     public void run() {
-        Echeancier.get(0).run();
+        List<Pair> echeancier = Echeancier.getEvenements();
+        while(!echeancier.isEmpty()){
+            echeancier.get(0).getEvenement().run();
+            System.out.println(echeancier.get(0).getEvenement().getClass().getName() + " at "+ echeancier.get(0).getDate());
+            echeancier.remove(0);
+        }
+
     }
 
     /*

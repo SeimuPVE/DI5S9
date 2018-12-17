@@ -3,7 +3,7 @@ package util;
 import evenements.Evenement;
 
 
-public class Pair {
+public class Pair implements Comparable<Pair> {
     private Evenement evenement;
     private float date;
 
@@ -19,5 +19,14 @@ public class Pair {
 
     public float getDate() {
         return date;
+    }
+
+    @Override
+    public int compareTo(Pair p) {
+        if (this.date > p.date) {
+            return 1;
+        } else if (this.date == p.date) {
+            return 0;
+        } else return -1;
     }
 }

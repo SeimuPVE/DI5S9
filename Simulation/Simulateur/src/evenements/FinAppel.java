@@ -5,14 +5,19 @@ import util.Simulateur;
 
 
 public class FinAppel extends Evenement {
+    private long heure;
+    public FinAppel(long heure) {
+        this.heure = heure;
+    }
+
     @Override
     public void run() {
         Simulateur.setB(false);
 
         if(Simulateur.getQ() > 0) {
-            Evenement accesAppel = new AccesAppel();
+            Evenement accesAppel = new AccesAppel(this.heure);
             Echeancier.ajouterEvenement(accesAppel, Simulateur.getTempsActuel());
-            accesAppel.run();
+//            accesAppel.run();
         }
     }
 }

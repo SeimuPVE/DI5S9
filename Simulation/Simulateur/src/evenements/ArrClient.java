@@ -7,7 +7,7 @@ import util.LoiSimulateur;
 import util.Simulateur;
 
 
-public class ArrClient extends Evenement implements Runnable {
+public class ArrClient extends Evenement{
     private long heure;
 
     public ArrClient(long heure) {
@@ -19,23 +19,23 @@ public class ArrClient extends Evenement implements Runnable {
     public void run() {
         // inter arrivee
         long interArrivee = (long) LoiSimulateur.loi_exp(0.4);
-
+        System.out.println("inter arrive:"+ interArrivee);
         // Si la simulation n'est pas fini
-        if (Simulateur.getTempsActuel() < Simulateur.getT()) {
+        long now = this.heure;
+        if (now < Simulateur.getT()) {
             // arrivee client
-            Clients.ajouterClient(new Client(Simulateur.getTempsActuel()));
+            Clients.ajouterClient(new Client(now));
 
-
-            AccFileTelephonique accFileTelephonique = new AccFileTelephonique();
+            AccFileTelephonique accFileTelephonique = new AccFileTelephonique(now);
             // creer AccFileTelephonique
-            Echeancier.ajouterEvenement(accFileTelephonique, Simulateur.getTempsActuel());
+            Echeancier.ajouterEvenement(accFileTelephonique, now);
 
-            ArrClient arrClient = new ArrClient(Simulateur.getTempsActuel() + interArrivee);
-            Echeancier.ajouterEvenement(arrClient, Simulateur.getTempsActuel() + interArrivee);
+            ArrClient arrClient = new ArrClient(now + interArrivee);
+            Echeancier.ajouterEvenement(arrClient, now + interArrivee);
 
-            arrClient.run();
+//            arrClient.run();
 //            Thread thread = new Thread(arrClient);
-            accFileTelephonique.run();
+//            accFileTelephonique.run();
         }
 
 
