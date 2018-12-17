@@ -1,8 +1,7 @@
 package clients;
 
 
-public class Client
-{
+public class Client {
     private double dateArrSystem; // Date d'arrivée dans le système.
     private float dateArrGuichet; // Date d'arrivée au guichet.
     private float dateDepGuichet; // Date de départ du guichet.
