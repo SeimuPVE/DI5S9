@@ -1,5 +1,6 @@
 package clients;
 
+
 public class Client
 {
     private double dateArrSystem; // Date d'arrivée dans le système.

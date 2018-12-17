@@ -27,9 +27,7 @@ public class AccesAppel extends Evenement {
 
         double tempsService = LoiSimulateur.loi_exp(0.6);
 
-//        System.out.println("temps service:"+ tempsService);
         Evenement finAppel = new FinAppel(this.heure + tempsService);
         Echeancier.ajouterEvenement(finAppel, this.heure + tempsService);
-//        finAppel.run();
     }
 }

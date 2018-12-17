@@ -1,13 +1,15 @@
 package evenements;
 
-
 import util.Echeancier;
 import util.LoiSimulateur;
 import util.Simulateur;
 
+
 public class Debut extends Evenement {
     @Override
     public void run() {
+        double interArrivee;
+
         Simulateur.setB(false);
         Simulateur.setQ(0);
 
@@ -17,11 +19,8 @@ public class Debut extends Evenement {
 
         Simulateur.setTempsDebut(System.currentTimeMillis());
 
-        double interArrivee = LoiSimulateur.loi_exp(0.4);
-
-
+        interArrivee = LoiSimulateur.loi_exp(0.4);
         Evenement arrClient = new ArrClient((long) interArrivee);
         Echeancier.ajouterEvenement(arrClient, (long)interArrivee);
-//        arrClient.run();
     }
 }

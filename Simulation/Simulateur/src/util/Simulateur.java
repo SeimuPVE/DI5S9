@@ -1,14 +1,12 @@
 package util;
 
 import evenements.Debut;
-import evenements.Evenement;
 
 import java.util.Collections;
 import java.util.List;
 
 
 public class Simulateur {
-
     // Variables utilitaires.
     private static boolean B = false; // Vaut vrai quand le téléconseiller est occupé avec un clients et faux si c’est libre.
     private static int Q; // Nombre de clients en attente.

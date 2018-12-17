@@ -1,8 +1,8 @@
 package evenements;
 
-
 import util.Echeancier;
 import util.Simulateur;
+
 
 public class AccFileTelephonique extends Evenement {
     private double heure;
@@ -15,12 +15,9 @@ public class AccFileTelephonique extends Evenement {
     public void run() {
         Simulateur.setQ(Simulateur.getQ() + 1);
 
-
         if (!Simulateur.isB()) {
             Evenement accesAppel = new AccesAppel(this.heure);
             Echeancier.ajouterEvenement(accesAppel, this.heure);
         }
-
-
     }
 }

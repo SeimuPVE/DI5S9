@@ -14,30 +14,24 @@ public class ArrClient extends Evenement{
         this.heure = heure;
     }
 
-
     @Override
     public void run() {
-        // inter arrivee
+        // Inter arrivées.
         long interArrivee = (long) LoiSimulateur.loi_exp(0.4);
-//        System.out.println("inter arrive:"+ interArrivee);
-        // Si la simulation n'est pas fini
         double now = this.heure;
+
+        // Si la simulation n'est pas finie.
         if (now < Simulateur.getT()) {
-            // arrivee client
+            // Arrivée client.
             Clients.ajouterClient(new Client(now));
 
             AccFileTelephonique accFileTelephonique = new AccFileTelephonique(now);
-            // creer AccFileTelephonique
+
+            // Créer AccFileTelephonique.
             Echeancier.ajouterEvenement(accFileTelephonique, now);
 
             ArrClient arrClient = new ArrClient(now + interArrivee);
             Echeancier.ajouterEvenement(arrClient, now + interArrivee);
-
-//            arrClient.run();
-//            Thread thread = new Thread(arrClient);
-//            accFileTelephonique.run();
         }
-
-
     }
 }
