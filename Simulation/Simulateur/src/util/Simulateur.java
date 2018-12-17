@@ -33,6 +33,7 @@ public class Simulateur {
         List<Pair> echeancier = Echeancier.getEvenements();
         while(!echeancier.isEmpty()){
             echeancier.get(0).getEvenement().run();
+            Collections.sort(echeancier);
             System.out.println(echeancier.get(0).getEvenement().getClass().getName() + " at "+ echeancier.get(0).getDate());
             echeancier.remove(0);
         }

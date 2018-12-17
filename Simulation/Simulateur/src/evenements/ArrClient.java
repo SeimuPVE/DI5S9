@@ -19,7 +19,7 @@ public class ArrClient extends Evenement{
     public void run() {
         // inter arrivee
         long interArrivee = (long) LoiSimulateur.loi_exp(0.4);
-        System.out.println("inter arrive:"+ interArrivee);
+//        System.out.println("inter arrive:"+ interArrivee);
         // Si la simulation n'est pas fini
         long now = this.heure;
         if (now < Simulateur.getT()) {
