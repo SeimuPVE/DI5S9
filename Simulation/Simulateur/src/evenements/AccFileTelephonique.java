@@ -19,7 +19,6 @@ public class AccFileTelephonique extends Evenement {
         if (!Simulateur.isB()) {
             Evenement accesAppel = new AccesAppel(this.heure);
             Echeancier.ajouterEvenement(accesAppel, this.heure);
-
         }
 
 

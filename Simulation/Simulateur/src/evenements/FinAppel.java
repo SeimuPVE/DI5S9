@@ -16,7 +16,7 @@ public class FinAppel extends Evenement {
 
         if(Simulateur.getQ() > 0) {
             Evenement accesAppel = new AccesAppel(this.heure);
-            Echeancier.ajouterEvenement(accesAppel, Simulateur.getTempsActuel());
+            Echeancier.ajouterEvenement(accesAppel, this.heure);
 //            accesAppel.run();
         }
     }
