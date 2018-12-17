@@ -8,9 +8,9 @@ import util.Simulateur;
 
 
 public class ArrClient extends Evenement{
-    private long heure;
+    private double heure;
 
-    public ArrClient(long heure) {
+    public ArrClient(double heure) {
         this.heure = heure;
     }
 
@@ -21,7 +21,7 @@ public class ArrClient extends Evenement{
         long interArrivee = (long) LoiSimulateur.loi_exp(0.4);
 //        System.out.println("inter arrive:"+ interArrivee);
         // Si la simulation n'est pas fini
-        long now = this.heure;
+        double now = this.heure;
         if (now < Simulateur.getT()) {
             // arrivee client
             Clients.ajouterClient(new Client(now));

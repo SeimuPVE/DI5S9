@@ -5,8 +5,8 @@ import util.Simulateur;
 
 
 public class FinAppel extends Evenement {
-    private long heure;
-    public FinAppel(long heure) {
+    private double heure;
+    public FinAppel(double heure) {
         this.heure = heure;
     }
 

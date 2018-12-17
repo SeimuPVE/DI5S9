@@ -5,10 +5,10 @@ import evenements.Evenement;
 
 public class Pair implements Comparable<Pair> {
     private Evenement evenement;
-    private float date;
+    private double date;
 
 
-    public Pair(Evenement evenement, float date) {
+    public Pair(Evenement evenement, double date) {
         this.evenement = evenement;
         this.date = date;
     }
@@ -17,7 +17,7 @@ public class Pair implements Comparable<Pair> {
         return evenement;
     }
 
-    public float getDate() {
+    public double getDate() {
         return date;
     }
 

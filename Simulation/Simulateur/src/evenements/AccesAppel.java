@@ -7,9 +7,9 @@ import util.Simulateur;
 
 
 public class AccesAppel extends Evenement {
-    private long heure;
+    private double heure;
 
-    public AccesAppel(long heure) {
+    public AccesAppel(double heure) {
         this.heure = heure;
 
     }
@@ -25,7 +25,7 @@ public class AccesAppel extends Evenement {
         Simulateur.setAttGlb(Simulateur.getAttGlb() - Simulateur.getTempsActuel() - Clients.getClientAt(Simulateur.getN()).getDateArrSystem());
         Simulateur.setN(Simulateur.getN() + 1);
 
-        long tempsService = (long) LoiSimulateur.loi_exp(0.6);
+        double tempsService = LoiSimulateur.loi_exp(0.6);
 
 //        System.out.println("temps service:"+ tempsService);
         Evenement finAppel = new FinAppel(this.heure + tempsService);

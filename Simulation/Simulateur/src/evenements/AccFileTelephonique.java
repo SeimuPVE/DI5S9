@@ -5,9 +5,9 @@ import util.Echeancier;
 import util.Simulateur;
 
 public class AccFileTelephonique extends Evenement {
-    private long heure;
+    private double heure;
 
-    public AccFileTelephonique(long heure) {
+    public AccFileTelephonique(double heure) {
         this.heure = heure;
     }
 
