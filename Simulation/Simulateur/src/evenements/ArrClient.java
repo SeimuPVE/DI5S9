@@ -34,6 +34,7 @@ public class ArrClient extends Evenement implements Runnable {
             Echeancier.ajouterEvenement(arrClient, Simulateur.getTempsActuel() + interArrivee);
 
             arrClient.run();
+//            Thread thread = new Thread(arrClient);
             accFileTelephonique.run();
         }
 

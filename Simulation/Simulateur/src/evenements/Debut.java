@@ -21,6 +21,7 @@ public class Debut extends Evenement {
 
         Evenement arrClient = new ArrClient((long) interArrivee + Simulateur.getTempsActuel());
         Echeancier.ajouterEvenement(arrClient, Simulateur.getTempsActuel());
-        arrClient.run();
+        Thread t1 = new Thread((ArrClient)arrClient);
+        t1.start();
     }
 }
