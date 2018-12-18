@@ -26,7 +26,11 @@ public class PaintingColor {
         return lColor;
     }
 
-    public boolean equals(PaintingColor obj) {
-        return (this.x == obj.x && this.y == obj.y && this.c.equals(obj.c) && this.pTaille == obj.pTaille);
+    @Override
+    public boolean equals(Object obj) {
+        if(obj.getClass() == getClass())
+            return (this.x == ((PaintingColor) obj).x && this.y == ((PaintingColor) obj).y && this.c.equals(((PaintingColor) obj).c) && this.pTaille == ((PaintingColor) obj).pTaille);
+        else
+            return false;
     }
 }

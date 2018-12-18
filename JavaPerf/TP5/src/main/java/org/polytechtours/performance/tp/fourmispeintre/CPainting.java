@@ -1,5 +1,6 @@
 package org.polytechtours.performance.tp.fourmispeintre;
 
+import org.polytechtours.performance.tp.fourmispeintre.colors.HistoryColor;
 import org.polytechtours.performance.tp.fourmispeintre.colors.PaintingColor;
 
 import java.awt.Canvas;
@@ -10,7 +11,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 
 /**
@@ -59,8 +59,7 @@ public class CPainting extends Canvas implements MouseListener {
     private boolean mSuspendu = false;
 
     // Ajouté : tableau de couleurs déjà utilisées (cache).
-    private ArrayList<PaintingColor> usedColors = new ArrayList<>();
-
+    private HistoryColor historyColor;
 
     /**
      * Titre : public CPainting() Description : Constructeur de la classe.
@@ -78,6 +77,8 @@ public class CPainting extends Canvas implements MouseListener {
 
         // Initialisation de la matrice des couleurs.
         mCouleurs = new Color[mDimension.width][mDimension.height];
+
+        historyColor = new HistoryColor();
 
         synchronized (mMutexCouleurs) {
             for (i = 0; i != mDimension.width; i++)
@@ -305,9 +306,13 @@ public class CPainting extends Canvas implements MouseListener {
         Color lColor;
 
         PaintingColor testedColor = new PaintingColor(x, y, c, pTaille);
-        if(usedColors.contains(testedColor))
-            mGraphics.setColor(usedColors.get(usedColors.indexOf(testedColor)).getlColor());
+        if(historyColor.contains(testedColor)) {
+            System.out.println("Number of colors : " + historyColor.size());
+            mGraphics.setColor(historyColor.incrementAndGet(historyColor.indexOf(testedColor)).getlColor());
+        }
         else {
+            System.out.println("Not saved.");
+
             synchronized(mMutexCouleurs) {
                 if (!mSuspendu) {
                     // On colorie la case sur laquelle se trouve la fourmi.
@@ -345,9 +350,9 @@ public class CPainting extends Canvas implements MouseListener {
                         }
 
                         lColor = new Color((int) R, (int) G, (int) B);
-                        usedColors.add(new PaintingColor(x, y, c, pTaille, lColor));
-
                         mGraphics.setColor(lColor);
+
+                        historyColor.add(new PaintingColor(x, y, c, pTaille, lColor));
 
                         m = (x + i - pTaille + mDimension.width) % mDimension.width;
                         n = (y + j - pTaille + mDimension.height) % mDimension.height;
