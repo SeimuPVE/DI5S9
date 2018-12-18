@@ -1,5 +1,7 @@
 package org.polytechtours.performance.tp.fourmispeintre;
 
+import org.polytechtours.performance.tp.fourmispeintre.colors.PaintingColor;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 
 /**
@@ -54,6 +57,9 @@ public class CPainting extends Canvas implements MouseListener {
     private PaintingAnts mApplis;
 
     private boolean mSuspendu = false;
+
+    // Ajouté : tableau de couleurs déjà utilisées (cache).
+    private ArrayList<PaintingColor> usedColors = new ArrayList<>();
 
 
     /**
@@ -298,54 +304,58 @@ public class CPainting extends Canvas implements MouseListener {
         float[][] matriceConv = new float[convForSize][convForSize];
         Color lColor;
 
-        synchronized(mMutexCouleurs) {
-            if (!mSuspendu) {
-                // On colorie la case sur laquelle se trouve la fourmi.
-                mGraphics.setColor(c);
-                mGraphics.fillRect(x, y, 1, 1);
-            }
+        PaintingColor testedColor = new PaintingColor(x, y, c, pTaille);
+        if(usedColors.contains(testedColor))
+            mGraphics.setColor(usedColors.get(usedColors.indexOf(testedColor)).getlColor());
+        else {
+            synchronized(mMutexCouleurs) {
+                if (!mSuspendu) {
+                    // On colorie la case sur laquelle se trouve la fourmi.
+                    mGraphics.setColor(c);
+                    mGraphics.fillRect(x, y, 1, 1);
+                }
 
-            mCouleurs[x][y] = c;
+                mCouleurs[x][y] = c;
 
-            // On fait diffuser la couleur :
-            switch(pTaille) {
-                case 0:
-                    break;
-                case 1:
-                    matriceConv = mMatriceConv9;
-                    break;
-                case 2:
-                    matriceConv = mMatriceConv25;
-                    break;
-                case 3:
-                    matriceConv = mMatriceConv49;
-                    break;
-            }
+                // On fait diffuser la couleur :
+                switch(pTaille) {
+                    case 1:
+                        matriceConv = mMatriceConv9;
+                        break;
+                    case 2:
+                        matriceConv = mMatriceConv25;
+                        break;
+                    case 3:
+                        matriceConv = mMatriceConv49;
+                        break;
+                }
 
-            for (i = 0; i < convForSize; i++) {
-                for (j = 0; j < convForSize; j++) {
-                    R = G = B = 0f;
+                for (i = 0; i < convForSize; i++) {
+                    for (j = 0; j < convForSize; j++) {
+                        R = G = B = 0f;
 
-                    for (k = 0; k < convForSize; k++) {
-                        for (l = 0; l < convForSize; l++) {
-                            m = (x + i + k - (2 * pTaille) + mDimension.width) % mDimension.width;
-                            n = (y + j + l - (2 * pTaille) + mDimension.height) % mDimension.height;
-                            R += matriceConv[k][l] * mCouleurs[m][n].getRed();
-                            G += matriceConv[k][l] * mCouleurs[m][n].getGreen();
-                            B += matriceConv[k][l] * mCouleurs[m][n].getBlue();
+                        for (k = 0; k < convForSize; k++) {
+                            for (l = 0; l < convForSize; l++) {
+                                m = (x + i + k - (2 * pTaille) + mDimension.width) % mDimension.width;
+                                n = (y + j + l - (2 * pTaille) + mDimension.height) % mDimension.height;
+                                R += matriceConv[k][l] * mCouleurs[m][n].getRed();
+                                G += matriceConv[k][l] * mCouleurs[m][n].getGreen();
+                                B += matriceConv[k][l] * mCouleurs[m][n].getBlue();
+                            }
                         }
+
+                        lColor = new Color((int) R, (int) G, (int) B);
+                        usedColors.add(new PaintingColor(x, y, c, pTaille, lColor));
+
+                        mGraphics.setColor(lColor);
+
+                        m = (x + i - pTaille + mDimension.width) % mDimension.width;
+                        n = (y + j - pTaille + mDimension.height) % mDimension.height;
+                        mCouleurs[m][n] = lColor;
+
+                        if (!mSuspendu)
+                            mGraphics.fillRect(m, n, 1, 1);
                     }
-
-                    lColor = new Color((int) R, (int) G, (int) B);
-
-                    mGraphics.setColor(lColor);
-
-                    m = (x + i - pTaille + mDimension.width) % mDimension.width;
-                    n = (y + j - pTaille + mDimension.height) % mDimension.height;
-                    mCouleurs[m][n] = lColor;
-
-                    if (!mSuspendu)
-                        mGraphics.fillRect(m, n, 1, 1);
                 }
             }
         }
