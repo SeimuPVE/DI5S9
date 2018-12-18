@@ -306,13 +306,10 @@ public class CPainting extends Canvas implements MouseListener {
         Color lColor;
 
         PaintingColor testedColor = new PaintingColor(x, y, c, pTaille);
-        if(historyColor.contains(testedColor)) {
-            System.out.println("Number of colors : " + historyColor.size());
-            mGraphics.setColor(historyColor.incrementAndGet(historyColor.indexOf(testedColor)).getlColor());
-        }
-        else {
-            System.out.println("Not saved.");
 
+        if(historyColor.contains(testedColor))
+            mGraphics.setColor(historyColor.incrementAndGet(historyColor.indexOf(testedColor)).getlColor());
+        else {
             synchronized(mMutexCouleurs) {
                 if (!mSuspendu) {
                     // On colorie la case sur laquelle se trouve la fourmi.

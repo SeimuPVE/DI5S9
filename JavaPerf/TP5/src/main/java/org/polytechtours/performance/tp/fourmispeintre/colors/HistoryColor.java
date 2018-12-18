@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 
 public class HistoryColor {
-    public static final int MAX_SIZE = 20000;
-    public static final int MIN_USE = 10;
+    public static final int MAX_SIZE = 100000;
+    public static final int MIN_USE = 100;
     private ArrayList<PaintingColor> colors;
     private int usedRate[];
 

@@ -4,4 +4,4 @@ Worst :
 	L'utilisation d'une classe pour ce qui a déjà été utilisé : ~ 500
 	Maximisation de la taille : ~ 2 500
 	Finalisation : ~ 4 000
-	Test des paramètres : ~ 
+	Test des paramètres : ~ 14 000
