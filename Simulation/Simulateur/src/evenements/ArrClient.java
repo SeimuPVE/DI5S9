@@ -2,6 +2,7 @@ package evenements;
 
 import clients.Client;
 import clients.Clients;
+import parseur.Parseur;
 import util.Echeancier;
 import util.LoiSimulateur;
 import util.Simulateur;
@@ -17,7 +18,8 @@ public class ArrClient extends Evenement{
     @Override
     public void run() {
         // Inter arrivées.
-        long interArrivee = (long) LoiSimulateur.loi_exp(0.4);
+//        double interArrivee = (long) LoiSimulateur.loi_exp(0.4); // TODO.
+        double interArrivee = Parseur.heureSuivante();
         double now = this.heure;
 
         // Si la simulation n'est pas finie.

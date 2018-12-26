@@ -1,6 +1,7 @@
 package evenements;
 
 import clients.Clients;
+import parseur.Parseur;
 import util.Echeancier;
 import util.LoiSimulateur;
 import util.Simulateur;
@@ -25,7 +26,8 @@ public class AccesAppel extends Evenement {
         Simulateur.setAttGlb(Simulateur.getAttGlb() - Simulateur.getTempsActuel() - Clients.getClientAt(Simulateur.getN()).getDateArrSystem());
         Simulateur.setN(Simulateur.getN() + 1);
 
-        double tempsService = LoiSimulateur.loi_exp(0.6);
+//        double tempsService = LoiSimulateur.loi_exp(0.6); // TODO.
+        double tempsService = Parseur.dureeSuivante();
 
         Evenement finAppel = new FinAppel(this.heure + tempsService);
         Echeancier.ajouterEvenement(finAppel, this.heure + tempsService);
