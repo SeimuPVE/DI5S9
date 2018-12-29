@@ -1,24 +1,15 @@
 package evenements;
 
-import parseur.Parseur;
+import util.Parseur;
 import util.Echeancier;
 import util.LoiSimulateur;
 import util.Simulateur;
-
-import java.io.IOException;
 
 
 public class Debut extends Evenement {
     @Override
     public void run() {
         double interArrivee;
-
-        try {
-            Parseur parseur = new Parseur("src/ressources/DataAppels.txt");
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
 
         Simulateur.setB(false);
         Simulateur.setQ(0);
@@ -29,7 +20,11 @@ public class Debut extends Evenement {
 
         Simulateur.setTempsDebut(System.currentTimeMillis());
 
-        interArrivee = LoiSimulateur.loi_exp(0.4);
+        if(Simulateur.isFromFile())
+            interArrivee = Parseur.heureSuivante();
+        else
+            interArrivee = (long) LoiSimulateur.loi_exp(Simulateur.lambda_exp_arr_client);
+
         Evenement arrClient = new ArrClient((long) interArrivee);
         Echeancier.ajouterEvenement(arrClient, (long)interArrivee);
     }

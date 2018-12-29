@@ -1,4 +1,4 @@
-package parseur;
+package util;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -55,5 +55,9 @@ public class Parseur {
         Double result = dureeAppels.get(compteurDuree);
         compteurDuree++;
         return result;
+    }
+
+    public static boolean finLecture() {
+        return compteurArr == dateArrAppels.size();
     }
 }
