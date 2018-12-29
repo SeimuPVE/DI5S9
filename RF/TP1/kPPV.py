@@ -41,8 +41,8 @@ def calcul_classe(distances):
     classe = -1
     for i in range(nbClasse):
         for j in range(nbApprent):
-            if distances[i * j] < distance_min:
-                distance_min = distances[i * j]
+            if distances[nbApprent * i + j] < distance_min:
+                distance_min = distances[nbApprent * i + j]
                 classe = i
     return classe
 
@@ -55,5 +55,22 @@ if __name__ == "__main__":
     print("Début programme kPPV")
     dataset = lecture_fichier_csv()
 
-    # Calcul et affiche la matrice de confusion et le taux de reco.
-    # TODO.
+    # Initialisation de la matrice de confusion.
+    matrice_confusion = [[]]*nbClasse
+    for i in range(nbClasse):
+        matrice_confusion[i] = [0]*nbClasse
+
+    # Test.
+    for i in range(nbClasse):
+        for j in range(nbExParClasse - nbApprent):
+            matrice_confusion[i][calcul_classe(calcul_distances(dataset[nbExParClasse * i + j + nbApprent], dataset))] += 1
+
+    print(matrice_confusion)
+
+    # Taux de reconnaissance.
+    taux_reco = 0
+    for i in range(nbClasse):
+        taux_reco += matrice_confusion[i][i]
+    taux_reco /= nbClasse * (nbExParClasse - nbApprent)
+
+    print(taux_reco)
