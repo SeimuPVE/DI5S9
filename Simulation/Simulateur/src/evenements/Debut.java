@@ -23,9 +23,9 @@ public class Debut extends Evenement {
         if(Simulateur.isFromFile())
             interArrivee = Parseur.heureSuivante();
         else
-            interArrivee = (long) LoiSimulateur.loi_exp(Simulateur.lambda_exp_arr_client);
+            interArrivee = LoiSimulateur.loi_exp(Simulateur.lambda_exp_arr_client);
 
-        Evenement arrClient = new ArrClient((long) interArrivee);
-        Echeancier.ajouterEvenement(arrClient, (long)interArrivee);
+        Evenement arrClient = new ArrClient(interArrivee);
+        Echeancier.ajouterEvenement(arrClient, interArrivee);
     }
 }

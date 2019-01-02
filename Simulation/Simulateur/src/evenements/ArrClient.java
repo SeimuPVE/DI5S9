@@ -11,6 +11,7 @@ import util.Simulateur;
 public class ArrClient extends Evenement{
     private double heure;
 
+
     public ArrClient(double heure) {
         this.heure = heure;
     }
@@ -19,16 +20,15 @@ public class ArrClient extends Evenement{
     public void run() {
         // Inter arrivées.
         double interArrivee;
+        double now = this.heure;
 
         if(Simulateur.isFromFile())
             interArrivee = Parseur.heureSuivante();
         else
-            interArrivee = (long) LoiSimulateur.loi_exp(Simulateur.lambda_exp_arr_client);
-
-        double now = this.heure;
+            interArrivee = LoiSimulateur.loi_exp(Simulateur.lambda_exp_arr_client);
 
         // Si la simulation n'est pas finie.
-        if (now < Simulateur.getT()) {
+        if((Simulateur.isFromFile() && !Parseur.finLecture()) || now < Simulateur.getT()) {
             // Arrivée client.
             Clients.ajouterClient(new Client(now));
 
@@ -37,8 +37,14 @@ public class ArrClient extends Evenement{
             // Créer AccFileTelephonique.
             Echeancier.ajouterEvenement(accFileTelephonique, now);
 
-            ArrClient arrClient = new ArrClient(now + interArrivee);
-            Echeancier.ajouterEvenement(arrClient, now + interArrivee);
+            if(Simulateur.isFromFile()) {
+                ArrClient arrClient = new ArrClient(interArrivee);
+                Echeancier.ajouterEvenement(arrClient, interArrivee);
+            }
+            else {
+                ArrClient arrClient = new ArrClient(now + interArrivee);
+                Echeancier.ajouterEvenement(arrClient, now + interArrivee);
+            }
         }
     }
 }

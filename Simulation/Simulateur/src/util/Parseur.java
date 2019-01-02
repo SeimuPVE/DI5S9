@@ -2,14 +2,14 @@ package util;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Parseur {
     private static int compteurArr;
     private static int compteurDuree;
-    private static List<Double> dateArrAppels;
-    private static List<Double> dureeAppels;
+    private static ArrayList<Double> dateArrAppels;
+    private static ArrayList<Double> dureeAppels;
+
 
     public Parseur(String fileName) throws IOException {
         compteurArr = 0;
@@ -24,29 +24,23 @@ public class Parseur {
         String line;
 
         while ((line = reader.readLine()) != null) {
-            String [] donnees = line.split(" ");
-
-            dateArrAppels.add(Double.parseDouble(donnees[0]));
-            dureeAppels.add(Double.parseDouble(donnees[1]));
+            dateArrAppels.add(Double.parseDouble(line.split(" ")[0]));
+            dureeAppels.add(Double.parseDouble(line.split(" ")[1]));
         }
 
         reader.close();
     }
 
-    public List<Double> getDateArrAppels() {
+    public ArrayList<Double> getDateArrAppels() {
         return dateArrAppels;
     }
 
-    public List<Double> getDureeAppels() {
+    public ArrayList<Double> getDureeAppels() {
         return dureeAppels;
     }
 
     public static Double heureSuivante() {
         Double result = dateArrAppels.get(compteurArr);
-
-        if(compteurArr > 0)
-            result -= dateArrAppels.get(compteurArr - 1);
-
         compteurArr++;
         return result;
     }
@@ -58,6 +52,6 @@ public class Parseur {
     }
 
     public static boolean finLecture() {
-        return compteurArr == dateArrAppels.size();
+        return compteurArr >= dateArrAppels.size();
     }
 }

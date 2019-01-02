@@ -7,6 +7,7 @@ import util.Simulateur;
 public class AccFileTelephonique extends Evenement {
     private double heure;
 
+
     public AccFileTelephonique(double heure) {
         this.heure = heure;
     }

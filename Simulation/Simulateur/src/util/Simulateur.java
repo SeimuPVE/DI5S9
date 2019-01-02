@@ -46,18 +46,14 @@ public class Simulateur {
 
     public void run() {
         List<Pair> echeancier = Echeancier.getEvenements();
-        boolean finLecture = false;
 
-        while(!echeancier.isEmpty() && !finLecture){
+        while(!echeancier.isEmpty() || (isFromFile() && !Parseur.finLecture() && !echeancier.isEmpty())) {
             echeancier.get(0).getEvenement().run();
 
             System.out.println(echeancier.get(0).getEvenement().getClass().getName() + " at "+ echeancier.get(0).getDate());
 
             echeancier.remove(0);
             Collections.sort(echeancier);
-
-            if(isFromFile())
-                finLecture = Parseur.finLecture();
         }
     }
 

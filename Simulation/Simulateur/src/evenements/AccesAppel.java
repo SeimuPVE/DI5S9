@@ -10,6 +10,7 @@ import util.Simulateur;
 public class AccesAppel extends Evenement {
     private double heure;
 
+
     public AccesAppel(double heure) {
         this.heure = heure;
     }
