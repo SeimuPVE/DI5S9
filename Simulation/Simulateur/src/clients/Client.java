@@ -3,8 +3,8 @@ package clients;
 
 public class Client {
     private double dateArrSystem; // Date d'arrivée dans le système.
-    private float dateArrGuichet; // Date d'arrivée au guichet.
-    private float dateDepGuichet; // Date de départ du guichet.
+    private double dateArrGuichet; // Date d'arrivée au guichet.
+    private double dateDepGuichet; // Date de départ du guichet.
 
     public Client(double dateArrSystem) {
         this.dateArrSystem = dateArrSystem;
@@ -21,4 +21,6 @@ public class Client {
     public double getDateArrSystem() {
         return dateArrSystem;
     }
+
+    public void setDateArrGuichet(double dateArrGuichet) { this.dateArrGuichet = dateArrGuichet; }
 }

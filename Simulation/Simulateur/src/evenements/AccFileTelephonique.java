@@ -1,5 +1,6 @@
 package evenements;
 
+import clients.Clients;
 import util.Echeancier;
 import util.Simulateur;
 
@@ -15,6 +16,7 @@ public class AccFileTelephonique extends Evenement {
     @Override
     public void run() {
         Simulateur.setQ(Simulateur.getQ() + 1);
+        Simulateur.setAireClientsDansFile(Simulateur.getAireClientsDansFile() + Simulateur.getQ());
 
         if (!Simulateur.isB()) {
             Evenement accesAppel = new AccesAppel(this.heure);

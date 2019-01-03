@@ -1,6 +1,8 @@
 package util;
 
+import clients.Clients;
 import evenements.Debut;
+import evenements.Fin;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -9,13 +11,14 @@ import java.util.List;
 
 public class Simulateur {
     // Configuration.
-    private static boolean fromFile = true;
-    private static String filePath = "src/ressources/DataAppels.txt";
+    private static boolean fromFile = false;
+    private static String filePath;
     public static double lambda_exp_arr_client = 0.4;
     public static double lambda_exp_acces_appel = 0.6;
 
     // Variables utilitaires.
-    private static boolean B = false; // Vaut vrai quand le téléconseiller est occupé avec un clients et faux si c’est libre.
+    private static boolean isEnded = false;
+    private static boolean B = false; // Vaut vrai quand le téléconseiller est occupé avec un client et faux si c’est libre.
     private static int Q; // Nombre de clients en attente.
     private static long tempsDebut; // Temps de lancement de la simulation.
 
@@ -23,21 +26,24 @@ public class Simulateur {
     private static double T; // Temps de la simulation.
     private static int N; // Nombre d'arrivées
     private static double AttGlb; // Attente globale des clients.
-    private static double TempsMax; // Temps d'attente maximale d'un clients.
+    private static double TempsMax; // Temps d'attente maximale d'un client.
 
-    public Simulateur() {
-        // Rien à faire, ce constructeur sert juste à créer un simulateur pour appeler les variables statiques.
-    }
+    private static double AireClientsDansFile; // Nombre total de clients dans la file.
+    private static double AireOccupationConseiller; // Temps total d'occupation du téléconseiller.
+
 
     public Simulateur(double tempsDeSimulation) {
         T = tempsDeSimulation;
         Echeancier.ajouterEvenement(new Debut(), 0);
+    }
+
+    public Simulateur(String filePath) {
+        Echeancier.ajouterEvenement(new Debut(), 0);
 
         // Initialisation du parseur.
         try {
-            Parseur parseur;
-            if(isFromFile())
-                parseur = new Parseur(filePath);
+            new Parseur(filePath);
+            fromFile = true;
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -47,14 +53,19 @@ public class Simulateur {
     public void run() {
         List<Pair> echeancier = Echeancier.getEvenements();
 
-        while(!echeancier.isEmpty() || (isFromFile() && !Parseur.finLecture() && !echeancier.isEmpty())) {
+        while((!isFromFile() && !isEnded) || (isFromFile() && !echeancier.isEmpty())) {
             echeancier.get(0).getEvenement().run();
 
             System.out.println(echeancier.get(0).getEvenement().getClass().getName() + " at "+ echeancier.get(0).getDate());
 
+            if (isFromFile())
+                T = echeancier.get(0).getDate();
+
             echeancier.remove(0);
             Collections.sort(echeancier);
         }
+
+        new Fin().run();
     }
 
     /*
@@ -100,6 +111,11 @@ public class Simulateur {
         N = n;
     }
 
+    public static void setIsEnded(boolean end)
+    {
+        isEnded = end;
+    }
+
     public static double getAttGlb() {
         return AttGlb;
     }
@@ -119,6 +135,20 @@ public class Simulateur {
     public static long getTempsActuel() {
         return System.currentTimeMillis() - tempsDebut;
     }
+
+    public static void setAireClientsDansFile(double aireClientsDansFile)
+    {
+        AireClientsDansFile = aireClientsDansFile;
+    }
+
+    public static double getAireClientsDansFile() { return AireClientsDansFile; }
+
+    public static void setAireOccupationConseiller(double aireOccupationConseiller)
+    {
+        AireOccupationConseiller = aireOccupationConseiller;
+    }
+
+    public static double getAireOccupationConseiller() { return AireOccupationConseiller; }
 
     public static boolean isFromFile() {
         return fromFile;
