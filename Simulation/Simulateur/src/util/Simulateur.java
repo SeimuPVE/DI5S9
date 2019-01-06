@@ -15,6 +15,9 @@ public class Simulateur {
     private static String filePath;
     public static double lambda_exp_arr_client = 0.4;
     public static double lambda_exp_acces_appel = 0.6;
+    public static double alpha_acces_appel = 2.5;
+    public static double beta_acces_appel = 6.4;
+
 
     // Variables utilitaires.
     private static boolean isEnded = false;
@@ -33,6 +36,7 @@ public class Simulateur {
 
 
     public Simulateur(double tempsDeSimulation) {
+        fromFile = false;
         T = tempsDeSimulation;
         Echeancier.ajouterEvenement(new Debut(), 0);
     }
