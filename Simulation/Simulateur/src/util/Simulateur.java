@@ -10,10 +10,14 @@ import java.util.List;
 
 
 public class Simulateur {
+
+
+    private static int choix;
+
     // Configuration.
     private static boolean fromFile = false;
     private static String filePath;
-    public static double lambda_exp_arr_client = 0.4;
+    public static double lambda_exp_arr_client = 0.176;
     public static double lambda_exp_acces_appel = 0.6;
     public static double alpha_acces_appel = 2.5;
     public static double beta_acces_appel = 6.4;
@@ -168,5 +172,14 @@ public class Simulateur {
 
     public static void setFilePath(String filePath) {
         Simulateur.filePath = filePath;
+    }
+
+
+    public static int getChoix() {
+        return choix;
+    }
+
+    public static void setChoix(int choix) {
+        Simulateur.choix = choix;
     }
 }

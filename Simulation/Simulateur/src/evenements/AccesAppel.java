@@ -31,8 +31,15 @@ public class AccesAppel extends Evenement {
         double tempsService;
         if(Simulateur.isFromFile())
             tempsService = Parseur.dureeSuivante();
-        else
-            tempsService = LoiSimulateur.loi_exp(Simulateur.lambda_exp_acces_appel);
+        else if(Simulateur.getChoix() == 1){
+            tempsService = 5.157;
+        }
+        else if(Simulateur.getChoix() == 3){
+            tempsService = 5.157;
+        }
+        else{
+            tempsService = LoiSimulateur.loi_beta(Simulateur.alpha_acces_appel,Simulateur.beta_acces_appel);
+        }
 
         Simulateur.setAireOccupationConseiller(Simulateur.getAireOccupationConseiller() + tempsService);
 

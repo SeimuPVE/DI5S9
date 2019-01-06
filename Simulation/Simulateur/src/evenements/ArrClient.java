@@ -33,12 +33,22 @@ public class ArrClient extends Evenement{
             // Créer AccFileTelephonique.
             Echeancier.ajouterEvenement(accFileTelephonique, now);
 
-            if(Simulateur.isFromFile() && !Parseur.finLecture()) {
+            if(Simulateur.isFromFile() && !Parseur.finLecture()) {  //chiox = 2: fichier
                 interArrivee = Parseur.heureSuivante();
                 ArrClient arrClient = new ArrClient(interArrivee);
                 Echeancier.ajouterEvenement(arrClient, interArrivee);
             }
-            else {
+            else if(Simulateur.getChoix() == 1){ // choix = 1: constante = moyenne
+                interArrivee = 5.68;
+                ArrClient arrClient = new ArrClient(now + interArrivee);
+                Echeancier.ajouterEvenement(arrClient, now + interArrivee);
+            }
+            else if(Simulateur.getChoix() == 3){ // choix: exp + constante
+                interArrivee = LoiSimulateur.loi_exp(Simulateur.lambda_exp_arr_client);
+                ArrClient arrClient = new ArrClient(now + interArrivee);
+                Echeancier.ajouterEvenement(arrClient, now + interArrivee);
+            }
+            else { // choix = 4 :  exp + beta
                 interArrivee = LoiSimulateur.loi_exp(Simulateur.lambda_exp_arr_client);
                 ArrClient arrClient = new ArrClient(now + interArrivee);
                 Echeancier.ajouterEvenement(arrClient, now + interArrivee);
