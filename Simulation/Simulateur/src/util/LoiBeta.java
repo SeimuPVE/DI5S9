@@ -2,6 +2,8 @@ package util;
 import org.apache.commons.math3.distribution.BetaDistribution;
 //import org.apache.commons.math3.special.Gamma;
 
+
+//À abandonner
 public class LoiBeta {
     // Simulation de l'entree (loi exp).
 
