@@ -1,6 +1,5 @@
 package util;
 
-import clients.Clients;
 import evenements.Debut;
 import evenements.Fin;
 
@@ -10,8 +9,6 @@ import java.util.List;
 
 
 public class Simulateur {
-
-
     private static int choix;
 
     // Configuration.
@@ -22,6 +19,9 @@ public class Simulateur {
     public static double alpha_acces_appel = 2.5;
     public static double beta_acces_appel = 6.4;
 
+    // Choix 1 :
+    public static double inter_arrivee;
+    public static double temps_service;
 
     // Variables utilitaires.
     private static boolean isEnded = false;
@@ -39,13 +39,34 @@ public class Simulateur {
     private static double AireOccupationConseiller; // Temps total d'occupation du téléconseiller.
 
 
-    public Simulateur(double tempsDeSimulation) {
+    public Simulateur(int choix, double tempsDeSimulation, double arrivee, double service, double beta) {
+        setChoix(choix);
+
+        if(choix == 1) {
+            inter_arrivee = arrivee;
+            temps_service = service;
+        }
+        else if(choix == 3) {
+            lambda_exp_arr_client = arrivee;
+            temps_service = service;
+        }
+        else if(choix == 4) {
+            lambda_exp_arr_client = arrivee;
+            alpha_acces_appel = service;
+            beta_acces_appel = beta_acces_appel;
+        }
+
         fromFile = false;
         T = tempsDeSimulation;
         Echeancier.ajouterEvenement(new Debut(), 0);
     }
 
-    public Simulateur(String filePath) {
+    public Simulateur(int choix, double tempsDeSimulation, double arrivee, double service) {
+        this(choix, tempsDeSimulation, arrivee, service, 0);
+    }
+
+    public Simulateur(int choix, String filePath) {
+        setChoix(choix);
         Echeancier.ajouterEvenement(new Debut(), 0);
 
         // Initialisation du parseur.

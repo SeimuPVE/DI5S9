@@ -18,7 +18,9 @@ public class Parseur {
         dateArrAppels = new ArrayList <> ();
         dureeAppels = new ArrayList <> ();
 
+        System.out.println("GO !");
         FileInputStream stream = new FileInputStream(fileName);
+        System.out.println("GO !");
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 
         String line;

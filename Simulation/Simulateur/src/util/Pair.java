@@ -23,10 +23,11 @@ public class Pair implements Comparable<Pair> {
 
     @Override
     public int compareTo(Pair p) {
-        if (this.date > p.date) {
+        if(this.date > p.date)
             return 1;
-        } else if (this.date == p.date) {
+        else if (this.date == p.date)
             return 0;
-        } else return -1;
+        else
+            return -1;
     }
 }
