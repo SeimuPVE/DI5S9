@@ -1,3 +1,5 @@
+TP2 :
+
 c = confiance aux données, plus c'est grand plus le poids est fort
 	on essaye donc de mieux classer et de tout inclure sans laisser de place à l'erreur
 	
@@ -50,3 +52,36 @@ ET OUI MON POTE !!
 Batch TODO :
 cmd /u svm-predict.exe -c %2 -g %3 %1\%1.app
 cmd /u svm-predict.exe %1\%1.app %1\%1.app.model %1\%1.result
+
+______________________________________________________________________________________________________________
+
+TP3 :
+
+Partie 1 :
+Question 1 : 2 erreurs sur Iris-versicolor et 1 sur Iris-virginica
+Question 2 : les mêmes mais une Iris-virginica en plus
+Question 3 : en le mettant à 0.6 au lieu de 0.3 on passe à 95.34% de juste
+	attention, en mettant 0.2 et 1000 en learning time je n'ai que 96.66% valides mais c'est toujours moins qu'en 0.3 et 500
+Question 4 : effectivement on a toujours 97.34%
+Le mieux : 1000, 0.3, a -> 97.33%
+
+Partie 2 :
+tic-tac-toe.arff
+	défaut : 96,87%
+	learning time : 1000, 96.87%; 100, 97.29%
+	learning rate : 0.1, 97.60%; 0.8, 97.08%
+	hidden layers : 100, 0.3, 6, 97.39% -> légère amélioration; 2 couches 97.91% ! Et seulement 97.18% avec 10 couches
+credit.arff
+	défaut : 85.10%
+	learning time : 1000, 83.88%; 100, 85.31%
+	learning rate : 0.1, 86.53%; 0.8, 86.12%
+	hidden layers : 100, 0.1, 10, 86.94%
+
+Partie 3 :
+Question 5 : Il semblerait que oui, comme pour la question 2
+Question 6 : Gamma à 0.2 et C à 30.0 et on obtient 99.67%, je n'arrive pas à obtenir mieux
+			 Gamma à 0.03 et C à 200 pour le 100% !
+
+Partie 4 :
+Question 7 : Avec 1000 itérations on monte à 98.33% au lieu de 72.55% à la base
+Question 8 : 81.73% de base, minNum 1.0, numFolds 2, 83.40%
