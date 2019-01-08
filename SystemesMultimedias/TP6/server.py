@@ -17,7 +17,6 @@ def int2bytes(n):
 # Initialize variables.
 SERVER_ADDR = "192.168.1.253"
 PORT = 5006
-BUFFER_SIZE = 4096
 WIDTH = 320
 HEIGHT = 180
 
@@ -38,40 +37,30 @@ sock.bind((SERVER_ADDR, PORT))
 
 
 # Capture frames from the camera.
-for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-    # Grab the raw NumPy array representing the image, then initialize the timestamp and occupied/unoccupied text.
-    image = frame.array
-    image.flags.writeable = True
+while(True):
+    for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+        # Grab the raw NumPy array representing the image, then initialize the timestamp and occupied/unoccupied text.
+        image = frame.array
+        image.flags.writeable = True
 
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    gray = cv2.resize(gray, (WIDTH, HEIGHT), interpolation=cv2.INTER_LINEAR)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        gray = cv2.resize(gray, (WIDTH, HEIGHT), interpolation=cv2.INTER_LINEAR)
 
-    # Send the image to the client.
-    print("Waiting on a client...")
-    data, address = sock.recvfrom(8)
-    sock.sendto(int2bytes(gray.size), address)
-    print("A new client is connected. An image of " + str(gray.size) + " bytes will be send.")
+        # Send the image size to the client.
+        print("Waiting on a client...")
+        data, address = sock.recvfrom(8)
+        sock.sendto(int2bytes(gray.size), address)
 
-    while int(gray.size) > 0:
-        if int(gray.size) < BUFFER_SIZE:
-            print("Last")
-            data = gray[0:gray.size]
-            gray = []
-            sock.sendto(data, address)
-        else:
-            print("In")
-            data = gray[0:BUFFER_SIZE]
-            gray = gray[BUFFER_SIZE:]
-            sock.sendto(data, address)
-        print(gray.size)
+        # Send the image to the client.
+        sock.sendto(gray, address)
 
-    # Clear the stream in preparation for the next frame.
-    rawCapture.truncate(0)
+        # Clear the stream in preparation for the next frame.
+        rawCapture.truncate(0)
 
-    # If the 'q' key was pressed, break from the loop.
-    key = cv2.waitKey(1) & 0xFF
-    if key == ord("q"):
-        break
+        # If the 'q' key was pressed, break from the loop.
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord("q"):
+            break
 
 sock.close()
 camera.close()
