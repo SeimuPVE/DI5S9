@@ -13,13 +13,13 @@ WIDTH = 320
 HEIGHT = 180
 
 
-# Initialize the socket.
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Internet with UDP.
-
-# Receive the data.
-sock.sendto(bytes(0), (UDP_IP, UDP_PORT))
-
 while(True):
+    # Initialize the socket.
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Internet with UDP.
+
+    # Receive the data.
+    sock.sendto(bytes(0), (UDP_IP, UDP_PORT))
+
     # Receive the image size.
     img_size, server = sock.recvfrom(8)
     img_size = int.from_bytes(img_size, byteorder='big')
@@ -32,11 +32,10 @@ while(True):
     # Convert the data in OpenCV img.
     im = np.frombuffer(raw_img, dtype='int8')  # Convert bytes to numpy format.
     im = np.uint8(im)  # Convert bytes in uint8.
-    im = np.reshape(im, (WIDTH, HEIGHT))  # Convert 1D raw into matrix.
+    im = np.reshape(im, (HEIGHT, WIDTH))  # Convert 1D raw into matrix.
 
     # Print the image to the screen.
     cv2.imshow("Frame", im)
-#    plt.imshow(im)
 
     key = cv2.waitKey(1) & 0xFF
     if key == ord("q"):
