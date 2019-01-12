@@ -1,12 +1,14 @@
 package util;
 
 import org.apache.commons.math3.distribution.BetaDistribution;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 
+// Simulation de l'entree (loi exp).
 public class LoiSimulateur {
-    // Simulation de l'entree (loi exp).
+    private static double esperance;
+
+
     public static double loi_exp(double lambda) {
         double p;
         double temp;
@@ -29,13 +31,8 @@ public class LoiSimulateur {
         return randres;
     }
 
-
-
-    private static double esperance;
     public static double loi_beta(double alpha, double beta) {
-
         esperance = alpha/(alpha+beta);
-
         BetaDistribution betaDistribution = new BetaDistribution(alpha,beta);
 
         return betaDistribution.sample();

@@ -8,6 +8,7 @@ import java.util.*;
 public class Echeancier {
     private static List<Pair> evenements = new ArrayList <> ();
 
+
     public static void ajouterEvenement(Evenement evenement, double date) {
         evenements.add(new Pair(evenement, date));
     }

@@ -23,8 +23,7 @@ public class ArrClient extends Evenement{
         double now = this.heure;
 
         // Si la simulation n'est pas finie.
-        if((Simulateur.isFromFile() && !Parseur.finLecture()) || now < Simulateur.getT())
-        {
+        if((Simulateur.isFromFile() && !Parseur.finLecture()) || now < Simulateur.getT()) {
             // Arrivée client.
             Clients.ajouterClient(new Client(now));
 
@@ -39,7 +38,7 @@ public class ArrClient extends Evenement{
                 Echeancier.ajouterEvenement(arrClient, interArrivee);
             }
             else if(Simulateur.getChoix() == 1){ // choix = 1: constante = moyenne
-                interArrivee = 5.68;
+                interArrivee = Simulateur.inter_arrivee;
                 ArrClient arrClient = new ArrClient(now + interArrivee);
                 Echeancier.ajouterEvenement(arrClient, now + interArrivee);
             }

@@ -22,24 +22,19 @@ public class AccesAppel extends Evenement {
 
         Clients.getClientAt(Simulateur.getN()).setDateArrGuichet(this.heure);
 
-        //if (Simulateur.getTempsActuel() - Clients.getClientAt(Simulateur.getN()).getDateArrSystem() > Simulateur.getTempsMax())
-        //    Simulateur.setTempsMax(Simulateur.getTempsActuel() - Clients.getClientAt(Simulateur.getN()).getDateArrSystem());
-
         Simulateur.setAttGlb(Simulateur.getAttGlb() + Clients.getClientAt(Simulateur.getN()).getDateArrGuichet() - Clients.getClientAt(Simulateur.getN()).getDateArrSystem());
         Simulateur.setN(Simulateur.getN() + 1);
 
         double tempsService;
+
         if(Simulateur.isFromFile())
             tempsService = Parseur.dureeSuivante();
-        else if(Simulateur.getChoix() == 1){
-            tempsService = 5.157;
-        }
-        else if(Simulateur.getChoix() == 3){
-            tempsService = 5.157;
-        }
-        else{
-            tempsService = LoiSimulateur.loi_beta(Simulateur.alpha_acces_appel,Simulateur.beta_acces_appel);
-        }
+        else if(Simulateur.getChoix() == 1)
+            tempsService = Simulateur.temps_service;
+        else if(Simulateur.getChoix() == 3)
+            tempsService = Simulateur.temps_service;
+        else
+            tempsService = LoiSimulateur.loi_beta(Simulateur.alpha_acces_appel, Simulateur.beta_acces_appel);
 
         Simulateur.setAireOccupationConseiller(Simulateur.getAireOccupationConseiller() + tempsService);
 
