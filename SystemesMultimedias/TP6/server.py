@@ -35,6 +35,8 @@ time.sleep(0.1)  # Allow the camera to warm up.
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Internet with UDP.
 sock.bind((SERVER_ADDR, PORT))
 
+print("Waiting on clients...")
+
 
 # Capture frames from the camera.
 while(True):
@@ -47,7 +49,6 @@ while(True):
         gray = cv2.resize(gray, (WIDTH, HEIGHT), interpolation=cv2.INTER_LINEAR)
 
         # Send the image size to the client.
-        print("Waiting on a client...")
         data, address = sock.recvfrom(8)
         sock.sendto(int2bytes(gray.size), address)
 
