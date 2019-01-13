@@ -38,7 +38,7 @@ public class Main {
 
                 case 2:
                     System.out.print("Chemin du fichier : ");
-                    simulateur = new Simulateur(2, "DataAppels.txt");
+                    simulateur = new Simulateur(2, "DataAppelsGenerees.txt");
                     simulateur.run();
                     break;
 
