@@ -34,7 +34,7 @@ public class LoiSimulateur {
     public static double loi_beta(double alpha, double beta) {
         esperance = alpha/(alpha+beta);
         BetaDistribution betaDistribution = new BetaDistribution(alpha,beta);
-
-        return betaDistribution.sample();
+        double p = ThreadLocalRandom.current().nextDouble();
+        return betaDistribution.inverseCumulativeProbability(p)*15;
     }
 }
