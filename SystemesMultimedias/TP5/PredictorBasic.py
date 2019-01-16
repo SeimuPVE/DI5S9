@@ -1,13 +1,25 @@
+from utils import *
+
+
 class PredictorBasic:
-    def __init__(self):
-        self.data = read_data("ml-100k/u.data", USER_COUNT, MOVIE_COUNT)
+    USER_COUNT = 943
+    MOVIE_COUNT = 1682
+    VOTE_COUNT = 100000
+
+    def __init__(self, fileParam):
+        self.file = fileParam
+        self.data = readdata(fileParam, self.USER_COUNT, self.MOVIE_COUNT)
 
     def compute(self):
-        mean = np.mean(self.data)
-        Vu = np.full((USER_COUNT), MOVIE_COUNT)
-        Vi = np.full((MOVIE_COUNT), USER_COUNT)
-        bu = (np.sum(self.data, axis=1) / Vu) - mean
-        bi = (np.sum(self.data, axis=0) / Vi) - mean
-        rui = mean + bu + bi  # TODO : non fonctionnel
-        RMSE = compute_rmse(VOTE_COUNT, self.data, rui)
-        print("RMSE : ", RMSE)
+        r = average_score(self.file)
+        vu = np.full(self.USER_COUNT, self.MOVIE_COUNT)
+        vi = np.full(self.MOVIE_COUNT, self.USER_COUNT)
+        bu = (np.sum(np.sum(self.data, axis=1)) / vu) - r
+        bi = (np.sum(np.sum(self.data, axis=0)) / vi) - r
+
+        rui = []
+        for x in range(self.USER_COUNT):
+            rui.append(r + bu[x] + bi)
+        rui = np.asarray(rui)
+        RMSE = rmse(self.VOTE_COUNT, self.data, rui)
+        print("Basic predictor RMSE : ", RMSE)  # TODO : It doesn't work, correct it.

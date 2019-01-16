@@ -1,7 +1,15 @@
+from utils import *
+
+
 class PredictorRandom:
-    def __init__(self):
-        self.data = read_data("ml-100k/u.data", USER_COUNT, MOVIE_COUNT)
+    USER_COUNT = 943
+    MOVIE_COUNT = 1682
+    VOTE_COUNT = 100000
+
+    def __init__(self, file):
+        self.data = readdata(file, self.USER_COUNT, self.MOVIE_COUNT)
 
     def compute(self):
-        RMSE = compute_rmse(VOTE_COUNT, self.data, np.random.rand(DATA.shape[0], DATA.shape[1]) * 5)
-        print("RMSE : ", RMSE)
+        scorealea = 1 + (np.random.random() * 4)
+        RMSE = rmse(self.VOTE_COUNT, self.data, scorealea)
+        print("Random predictor RMSE :", RMSE)
